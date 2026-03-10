@@ -210,11 +210,27 @@ Scaffold a lightweight MCP server that exposes specs as searchable cold memory.
 
 | Tool | Parameters | Returns |
 |------|-----------|---------|
-| `list_specs` | none | Array of {name, description, file} |
-| `get_spec` | `name: string` | Full markdown content |
-| `search_specs` | `query: string` | Matching sections (keyword substring) |
+| `{project}_list_specs` | none | Markdown table of specs |
+| `{project}_get_spec` | `name: string` | Full markdown content |
+| `{project}_search_specs` | `query: string`, `max_results?: number` | Matching sections with context |
 
-**Implementation:** ~200 lines in Node.js using `@modelcontextprotocol/sdk` with stdio transport. Reads markdown files from `docs/specs/`. Keyword substring matching is sufficient -- the paper found this outperformed more complex retrieval for structured specs.
+**Tool design principles** (AI selects tools based on descriptions, not names):
+
+1. **Namespace tool names** with project prefix (e.g. `minoo_get_spec`, not `get_spec`) to avoid collisions with other MCP servers.
+
+2. **Write actionable descriptions** that tell the AI when and why to use each tool:
+   - Bad: "List specs"
+   - Good: "List all subsystem specification documents. Use this to discover which specs are available before retrieving one."
+
+3. **Describe parameters with examples**: `"Spec name without .md extension, e.g. 'entity-model', 'api-layer'"` — the AI needs format guidance to construct correct values.
+
+4. **Return markdown, not JSON**: The AI reasons better about structured text (tables, headings) than nested JSON objects. Use markdown tables for listings, fenced code blocks for context snippets.
+
+5. **Limit search results**: Cap matches per spec (default ~10) to prevent flooding the context window. Accept an optional `max_results` parameter.
+
+6. **Return helpful errors**: On not-found, list available options so the AI can self-correct without a second tool call.
+
+**Implementation:** ~100 lines in Node.js using `@modelcontextprotocol/sdk` with stdio transport. Reads markdown files from `docs/specs/`. Keyword substring matching is sufficient -- the paper found this outperformed more complex retrieval for structured specs.
 
 **Configuration:** Add to `.claude/settings.json`:
 ```json
@@ -229,7 +245,72 @@ Scaffold a lightweight MCP server that exposes specs as searchable cold memory.
 }
 ```
 
-### Step 8: Set Up Maintenance
+### Step 8: GitHub Workflow Governance
+Wire GitHub issue and milestone tracking into codified context so drift is caught at session start.
+
+**8a. Drift-check script**
+Create `bin/check-milestones` (bash, executable) that:
+- Lists open issues with no milestone assigned (incomplete triage)
+- Lists open milestones with zero open issues (possibly stale)
+- Exits 0 always — output is a warning surface for Claude, not a CI gate
+
+Uses `gh api` for queries. Hardcode the repo slug (e.g. `owner/repo`).
+
+**8b. SessionStart hook**
+Add to `.claude/settings.json` (committed, not `.local.json`):
+```json
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bin/check-milestones",
+            "show_output": true
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**8c. Workflow spec (`docs/specs/workflow.md`)**
+Create a spec containing:
+- Versioning model for this repo (and any sibling repos)
+- Current milestone list with descriptions and statuses
+- The 5 workflow rules (see below)
+- Instructions for keeping the spec updated when milestones change
+
+Add to the orchestration table: `| GitHub issues, milestones, new features, roadmap | — | docs/specs/workflow.md |`
+
+**8d. CLAUDE.md GitHub Workflow section**
+Add a "GitHub Workflow" section summarizing the 5 rules and pointing to `docs/specs/workflow.md`.
+
+**8e. PR template (`.github/pull_request_template.md`)**
+```markdown
+Closes #
+
+## Summary
+
+
+## Checklist
+
+- [ ] `Closes #N` above references the issue this PR resolves
+- [ ] The issue is assigned to a milestone
+- [ ] PR title includes the issue number (e.g. `feat(#42): description`)
+```
+
+**The 5 workflow rules (codify in CLAUDE.md and workflow spec):**
+1. All work begins with an issue — ask for issue number before writing code, create one if missing
+2. Every issue belongs to a milestone — unassigned issues are incomplete triage
+3. Milestones define the roadmap — check active milestone before proposing work, don't invent new ones without discussion
+4. PRs must reference issues — title format `feat(#N): description`
+5. Claude reads the drift report — flag `bin/check-milestones` warnings before beginning work
+
+### Step 9: Set Up Maintenance
 Prevent the #1 failure mode: stale specs.
 
 **8a. Drift Detection Script**
@@ -244,13 +325,13 @@ Warning: 2 specs may need review.
 
 Build a mapping from file path patterns to spec files (same patterns as the orchestration trigger table).
 
-**8b. Session Discipline**
+**9b. Session Discipline**
 After any session that changes a subsystem's behavior:
 1. Update constitution if gotchas changed
 2. Update relevant `docs/specs/` file if interfaces or data flow changed
 3. Run drift detector to catch anything missed
 
-**8c. Maintenance Cadence**
+**9c. Maintenance Cadence**
 - Per-session: update affected specs (~5 min when needed)
 - Biweekly: run drift detector, review flagged specs (~30 min)
 - Quarterly: audit coverage -- are new subsystems missing specs?
@@ -258,13 +339,23 @@ After any session that changes a subsystem's behavior:
 ## Quality Checklist
 - [ ] Constitution is under 200 lines (fits comfortably in hot memory)
 - [ ] Orchestration table covers all active packages/modules
+- [ ] Orchestration table has a row for `GitHub issues, milestones, new features, roadmap → docs/specs/workflow.md`
 - [ ] Every skill has >50% domain knowledge content (not just instructions)
 - [ ] Every spec has explicit file paths, not vague descriptions
 - [ ] Every spec has full interface signatures with types
-- [ ] MCP retrieval returns useful results for common domain queries
+- [ ] MCP tool descriptions explain when and why to use each tool (not just what it does)
+- [ ] MCP tools return markdown (tables, headings) not raw JSON
+- [ ] MCP search results are capped to prevent context window flooding
+- [ ] MCP error responses include available options for self-correction
+- [ ] MCP tool names are namespaced with project prefix
 - [ ] Drift detector maps all active packages to specs
 - [ ] No circular references between tiers (constitution -> skills -> specs)
 - [ ] Operation checklists cover the 4-5 most common tasks
+- [ ] `bin/check-milestones` script exists and is executable
+- [ ] `.claude/settings.json` has SessionStart hook running `bin/check-milestones`
+- [ ] `docs/specs/workflow.md` exists with versioning model, milestone list, and 5 workflow rules
+- [ ] CLAUDE.md has "GitHub Workflow" section with 5 rules and pointer to workflow spec
+- [ ] `.github/pull_request_template.md` exists with issue reference checklist
 
 ## Anti-Patterns to Avoid
 - **Bloated constitution**: Over 300 lines defeats the hot-memory purpose. Move detail to skills.
@@ -273,6 +364,9 @@ After any session that changes a subsystem's behavior:
 - **Volatile specs**: Specs for subsystems changing daily. Wait until interfaces stabilize.
 - **Complex retrieval**: MCP server with embeddings, vector DBs, or external dependencies. Keyword substring search on structured specs works.
 - **Orphan specs**: Specs not referenced by any skill or trigger table entry. Every spec must be reachable.
+- **Generic tool descriptions**: The AI selects tools by description, not name. "List specs" tells it nothing. "List all subsystem specs to discover what's available before retrieving one" guides correct usage.
+- **JSON dumps as tool output**: Return markdown tables and structured text. The AI reasons about formatted text better than deeply nested JSON.
+- **Unbounded search results**: Always cap matches to prevent flooding the context window. The AI can refine its query if needed.
 
 ## Metrics
 - **Knowledge-to-code ratio**: (lines of codified context / lines of source code). Target >5%.

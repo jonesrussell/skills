@@ -49,6 +49,24 @@ cat .claude/settings.local.json   # look for spec-retrieval tool entries
 cat .claude/mcp.json 2>/dev/null  # look for spec-retrieval server
 ```
 
+Check GitHub workflow governance:
+```bash
+ls bin/check-milestones 2>/dev/null       # drift-check script
+cat .claude/settings.json | grep -A5 SessionStart  # hook wired?
+ls docs/specs/workflow.md 2>/dev/null     # governance spec
+ls .github/pull_request_template.md 2>/dev/null    # PR template
+```
+
+Add to the audit table:
+
+| Component | Present | Gap |
+|-----------|---------|-----|
+| `bin/check-milestones` | yes/no | create if missing |
+| SessionStart hook in `.claude/settings.json` | yes/no | add if missing |
+| `docs/specs/workflow.md` | yes/no | create if missing |
+| CLAUDE.md GitHub Workflow section | yes/no | add if missing |
+| `.github/pull_request_template.md` | yes/no | create if missing |
+
 ## Step 2: Update by Tier (T1 → T2 → T3)
 
 ### T1: Service CLAUDE.mds + Root Orchestration Table
