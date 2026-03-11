@@ -336,6 +336,71 @@ After any session that changes a subsystem's behavior:
 - Biweekly: run drift detector, review flagged specs (~30 min)
 - Quarterly: audit coverage -- are new subsystems missing specs?
 
+### Step 10: Verify
+
+Run these checks before considering setup complete. Each produces PASS/WARN/FAIL.
+
+**10a. Constitution Quality Gate**
+
+Shell one-liners against CLAUDE.md:
+- Line count: `wc -l CLAUDE.md` — under 200 = PASS, 200-250 = WARN, over 250 = FAIL
+- Orchestration table present: `grep -c '|.*|.*|' CLAUDE.md` — at least 3 pipe-delimited rows = PASS
+- Layer/architecture reference: `grep -qi 'layer\|architecture' CLAUDE.md` — found = PASS
+- Cross-tier references: `grep -q 'docs/specs/\|skills/' CLAUDE.md` — found = PASS
+
+**10b. Coverage Verification**
+
+Cross-reference the orchestration table (Step 4) against the filesystem:
+- Extract spec paths from the orchestration table, verify each `docs/specs/<name>.md` exists on disk
+- Extract skill references from the orchestration table, verify each `skills/<domain>/SKILL.md` exists on disk
+- Check for orphan specs: files in `docs/specs/` not referenced by any orchestration table row
+- PASS: all referenced files exist and no more than 1 orphan. WARN: 2-3 orphans. FAIL: any referenced file missing.
+
+**10c. MCP Tools Verification**
+
+Tier 3 is non-functional without working MCP — any failure here is a hard block:
+- Server starts without crashing: `timeout 5 node tools/spec-retrieval/server.js` exits without error
+- MCP config present: `.claude/settings.json` contains a `mcpServers` entry referencing `tools/spec-retrieval/server.js`
+- `list_specs` returns a markdown table with at least one spec
+- `get_spec` with a valid spec name returns full markdown content (check for `# ` heading)
+- `search_specs` with a keyword from a known spec returns at least one matching section
+- `get_spec` with a nonexistent name returns an error that lists available spec names (self-correction guidance)
+
+**10d. End-to-End Smoke Test**
+
+Pick 2-3 source files from different subsystems and trace each through the full chain:
+1. File path → matches an orchestration table row
+2. Orchestration row → references a skill that exists and loads
+3. Orchestration row → references a spec retrievable via MCP `get_spec`
+4. Retrieved spec → contains actionable knowledge (file paths, interface signatures, code patterns)
+
+PASS: at least 2 of 3 files complete the full chain. WARN: only 1 completes. FAIL: none complete.
+
+**Produce a summary table:**
+
+```markdown
+| Check | Result | Action needed |
+|-------|--------|---------------|
+| 10a. Constitution size | PASS/WARN/FAIL | ... |
+| 10a. Orchestration table | PASS/FAIL | ... |
+| 10a. Architecture reference | PASS/FAIL | ... |
+| 10a. Cross-tier references | PASS/FAIL | ... |
+| 10b. Spec coverage | PASS/WARN/FAIL | ... |
+| 10b. Skill coverage | PASS/WARN/FAIL | ... |
+| 10b. Orphan specs | PASS/WARN/FAIL | ... |
+| 10c. Server starts | PASS/FAIL | ... |
+| 10c. MCP config | PASS/FAIL | ... |
+| 10c. list_specs | PASS/FAIL | ... |
+| 10c. get_spec (valid) | PASS/FAIL | ... |
+| 10c. search_specs | PASS/FAIL | ... |
+| 10c. get_spec (invalid) | PASS/FAIL | ... |
+| 10d. Smoke test (file 1) | PASS/FAIL | ... |
+| 10d. Smoke test (file 2) | PASS/FAIL | ... |
+| 10d. Smoke test (file 3) | PASS/FAIL | ... |
+```
+
+All checks must PASS or WARN before setup is considered complete. Fix any FAIL before proceeding.
+
 ## Quality Checklist
 - [ ] Constitution is under 200 lines (fits comfortably in hot memory)
 - [ ] Orchestration table covers all active packages/modules
@@ -356,6 +421,8 @@ After any session that changes a subsystem's behavior:
 - [ ] `docs/specs/workflow.md` exists with versioning model, milestone list, and 5 workflow rules
 - [ ] CLAUDE.md has "GitHub Workflow" section with 5 rules and pointer to workflow spec
 - [ ] `.github/pull_request_template.md` exists with issue reference checklist
+
+> **Run Step 10 verification before considering setup complete.** The checklist above covers static properties; Step 10 tests runtime behavior. All checks must pass or warn — fix any FAIL before proceeding.
 
 ## Anti-Patterns to Avoid
 - **Bloated constitution**: Over 300 lines defeats the hot-memory purpose. Move detail to skills.

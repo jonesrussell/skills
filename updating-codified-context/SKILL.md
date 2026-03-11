@@ -43,10 +43,11 @@ Then produce a priority table:
 | rfp-ingestor | missing | missing | missing | n/a |
 | social-publisher | missing | missing | missing | n/a |
 
-Check MCP wiring:
+Check MCP wiring (server may be in either committed or local config):
 ```bash
-cat .claude/settings.local.json   # look for spec-retrieval tool entries
-cat .claude/mcp.json 2>/dev/null  # look for spec-retrieval server
+cat .claude/settings.json         # canonical location (committed, see codified-context Step 7)
+cat .claude/settings.local.json 2>/dev/null  # local overrides
+cat .claude/mcp.json 2>/dev/null  # alternative MCP config
 ```
 
 Check GitHub workflow governance:
@@ -72,8 +73,8 @@ Add to the audit table:
 ### T1: Service CLAUDE.mds + Root Orchestration Table
 
 For each service missing a CLAUDE.md, read the source first:
-- `main.go` — bootstrap pattern, ports, top-level flow
-- `internal/config/config.go` — env vars and defaults
+- Entry point (e.g. `main.go`, `index.ts`, `app.py`) — bootstrap pattern, ports, top-level flow
+- Config file (e.g. `config.go`, `config.ts`, `.env.example`) — env vars and defaults
 - Key domain files — understand what the service actually does
 
 Write `{service}/CLAUDE.md` following the established pattern in other service CLAUDE.mds.
@@ -96,35 +97,62 @@ Skip if no domain knowledge changed.
 
 **Create new spec files** for each uncovered service — do NOT reuse existing specs for unrelated services.
 
-Spec file template (`docs/specs/{service}.md`):
+Spec file template (`docs/specs/{service}.md`) — aligned with `codified-context` Step 6:
 ```markdown
-# {Service} Spec
+# {Service} Specification
 ## File Map
-## Interface / API
+## Interface Signatures
 ## Data Flow
-## Config Vars
-## ES Index / DB Schema (if applicable)
-## Known Constraints
+## Storage / Schema
+## Configuration
+## Edge Cases
 ```
 
 **Update drift-detector**: Add `["{service}/"]="docs/specs/{service}.md"` entries to `PATTERN_TO_SPEC`. Map each service to its own spec file.
 
-**Wire MCP** if spec-retrieval server exists but tools aren't in `settings.local.json`:
+**Wire MCP** if spec-retrieval server exists but tools aren't configured:
 - Add `list_specs`, `get_spec`, `search_specs` to the `permissions.allow` list
-- Add the server to `enabledMcpjsonServers`
+- Add the server to `mcpServers` in `.claude/settings.json` (canonical) or `.claude/settings.local.json` (local-only)
+
+### GitHub Workflow Governance
+
+If the Step 1 audit found missing governance artifacts, create them now following `codified-context` Step 8:
+- **`bin/check-milestones`**: bash script querying `gh api` for untriaged issues and stale milestones (exit 0 always)
+- **SessionStart hook**: add to `.claude/settings.json` under `hooks.SessionStart` to run `bin/check-milestones`
+- **`docs/specs/workflow.md`**: versioning model, milestone list, 5 workflow rules
+- **CLAUDE.md GitHub Workflow section**: summarize 5 rules, point to `docs/specs/workflow.md`
+- **`.github/pull_request_template.md`**: `Closes #`, summary, checklist (issue ref, milestone, title format)
 
 ## Step 3: Verify
 
+Run drift-detector to confirm no regressions:
 ```bash
 bash tools/drift-detector.sh 10
 ```
-
 Expected: exit 0 with no MISSING or WARNING lines for newly covered services.
 
-If spec-retrieval MCP is wired, verify:
-```bash
-# call search_specs with a term from the new spec
-```
+Then run the relevant checks from `codified-context` Step 10 (adapted for incremental updates):
+
+**3a. Constitution quality gate** (if CLAUDE.md was modified):
+- `wc -l CLAUDE.md` — under 200 = PASS, 200-250 = WARN, over 250 = FAIL
+- Verify orchestration table still has pipe-delimited rows for all services
+
+**3b. Coverage verification** (always):
+- Cross-reference orchestration table entries against `docs/specs/` and `skills/` on disk
+- Any referenced file missing = FAIL — fix before committing
+- Check for orphan specs (>1 orphan = WARN)
+
+**3c. MCP tools verification** (if specs were added/modified):
+- `list_specs` returns updated spec list including new specs
+- `get_spec` with a new spec name returns content with `# ` heading
+- `search_specs` with a keyword from new spec returns matches
+- `get_spec` with nonexistent name returns error listing available options
+
+**3d. Smoke test** (pick 1-2 newly covered services):
+- Trace: file path → orchestration table match → skill reference → spec retrieval via MCP → actionable knowledge
+- At least 1 new service must complete the full chain
+
+All checks must PASS or WARN. Fix any FAIL before committing.
 
 ## Step 4: Commit
 
@@ -142,5 +170,5 @@ Example: `chore(context): fill codified context gaps — rfp-ingestor, social-pu
 | Mapping new service to existing spec in drift-detector | Create `docs/specs/{service}.md` for each new service |
 | Writing CLAUDE.md from task description alone | Read the actual source code first — configs reveal env vars, mapping reveals ES constraints |
 | Forgetting self-trigger row in orchestration table | Add `docs/specs/**, .claude/**, **/CLAUDE.md → updating-codified-context` row |
-| Skipping MCP wiring check | Always check `.claude/settings.local.json` for spec-retrieval tools |
+| Skipping MCP wiring check | Check both `.claude/settings.json` (canonical) and `.claude/settings.local.json` for spec-retrieval tools |
 | Not running drift-detector before AND after | Run before to establish baseline, after to verify no regressions |
