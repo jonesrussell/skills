@@ -179,7 +179,7 @@ Use this structure in the artifact. Keep platform copy concise; the link drives 
 
 **Canonical URL:** https://jonesrussell.github.io/blog/{slug}/
 
-## Mastodon / Bluesky / long-form
+## Facebook
 
 [1–3 sentences hook + link. No strict limit.]
 
@@ -194,7 +194,7 @@ Use this structure in the artifact. Keep platform copy concise; the link drives 
 
 ### Platform notes
 
-- **Mastodon / Bluesky:** Longer copy is fine. One or two sentences plus the link. No character limit to target.
+- **Facebook:** Longer copy is fine. One or two sentences plus the link. No character limit to target.
 - **X (Twitter):** Stay under ~240 characters including the URL so it fits one tweet; put the link at the end.
 - **LinkedIn:** One or two sentences, more professional tone; include the link.
 
