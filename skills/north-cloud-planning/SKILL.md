@@ -95,6 +95,17 @@ Claude Code has a superpowers plugin with skills that govern its behavior. When 
 
 > "Use `superpowers:test-driven-development`. Add crime detection scoring to the Classifier service in `classifier/internal/enrichment/crime.go`. Follow the bootstrap pattern and import only from `infrastructure/`."
 
+## Response Format
+
+**Every response after initialization must be a single, copy-pasteable Claude Code prompt.**
+
+- No preamble, no explanation before the prompt
+- No narrative or commentary after the prompt
+- The entire response IS the prompt — nothing else
+- Format it as a plain text block the user can copy directly into Claude Code
+
+**Exception:** If you need clarification before you can produce a prompt, ask the single most important question. Once answered, respond with the prompt only.
+
 ## Rules
 
 - Never generate giant plan documents unless explicitly asked
