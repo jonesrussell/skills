@@ -51,12 +51,12 @@ Code quality, architecture, and security review skills.
 - `codified-context` — Apply three-tier codified context architecture
 - `monorepo-cleanup` — Review monorepos for cross-service issues
 - `security-review` — Audit services for security vulnerabilities
+- `updating-codified-context` — Update existing codified context when specs drift
 
 ### misc-skills
 Miscellaneous development workflow skills.
 - `documenting-session-findings` — Capture session findings before moving on
 - `optimizing-responsive-images` — Responsive image sizing, format conversion, srcset
-- `updating-codified-context` — Update existing codified context when specs drift
 
 ## Creating Skills
 

@@ -56,18 +56,18 @@
         "./skills/cleaning-up-codebases",
         "./skills/codified-context",
         "./skills/monorepo-cleanup",
-        "./skills/security-review"
+        "./skills/security-review",
+        "./skills/updating-codified-context"
       ]
     },
     {
       "name": "misc-skills",
-      "description": "Miscellaneous development workflow skills for session documentation, responsive images, and codified context updates",
+      "description": "Miscellaneous development workflow skills for session documentation and responsive images",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/documenting-session-findings",
-        "./skills/optimizing-responsive-images",
-        "./skills/updating-codified-context"
+        "./skills/optimizing-responsive-images"
       ]
     }
   ]
