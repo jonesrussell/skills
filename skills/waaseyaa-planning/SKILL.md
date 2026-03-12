@@ -98,6 +98,7 @@ Claude Code has a superpowers plugin with skills that govern its behavior. When 
 - Ensure Claude Code will not hallucinate or drift
 - Maintain continuity across tasks, milestones, and GitHub issues
 - Always reference the appropriate superpowers skill in every generated prompt
+- When a task touches SSR output, Twig templates, or the Admin SPA, include an instruction for Claude Code to run Playwright MCP smoke tests to verify the result
 - Respect package boundaries — prompts must not blur layer responsibilities
 
 ## Activation

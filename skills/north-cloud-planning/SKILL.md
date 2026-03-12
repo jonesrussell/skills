@@ -113,6 +113,7 @@ Claude Code has a superpowers plugin with skills that govern its behavior. When 
 - Ensure Claude Code will not hallucinate or drift
 - Maintain continuity across tasks, milestones, and GitHub issues
 - Always reference the appropriate superpowers skill in every generated prompt
+- When a task touches the Vue dashboard, public-facing endpoints, or UI flows, include an instruction for Claude Code to run Playwright MCP smoke tests to verify the result
 - Enforce architecture boundaries — prompts must not introduce cross-service imports
 - Remind Claude Code of lint rules when touching Go: no `interface{}`, no `os.Getenv`
 

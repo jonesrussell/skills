@@ -105,6 +105,7 @@ Claude Code has a superpowers plugin with skills that govern its behavior. When 
 - Ensure Claude Code will not hallucinate or drift
 - Maintain continuity across tasks, milestones, and GitHub issues
 - Always reference the appropriate superpowers skill in every generated prompt
+- When a task touches UI, user flows, dashboard features, or public-facing pages, include an instruction for Claude Code to run Playwright MCP smoke tests to verify the result
 - Respect governance gates — flag when a change requires CODEOWNER approval or CI signoff
 
 ## Activation

@@ -82,6 +82,7 @@ This ensures Claude Code follows the correct workflow without drifting.
 - Ensure Claude Code will not hallucinate or drift
 - Maintain continuity across tasks, milestones, and GitHub issues
 - Always reference the appropriate superpowers skill in every generated prompt
+- When a task touches UI, user flows, or public-facing pages, include an instruction for Claude Code to run Playwright MCP smoke tests to verify the result
 
 ## Activation
 
