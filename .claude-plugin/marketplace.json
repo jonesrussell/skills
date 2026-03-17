@@ -10,65 +10,9 @@
   },
   "plugins": [
     {
-      "name": "myme-skills",
-      "description": "MyMe desktop app (Rust/Qt) development skills covering core auth, data services, Google integrations, QML UI, UI bridge, and weather",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./skills/myme-core-auth",
-        "./skills/myme-data-services",
-        "./skills/myme-google-services",
-        "./skills/myme-qml-ui",
-        "./skills/myme-ui-bridge",
-        "./skills/myme-weather"
-      ]
-    },
-    {
-      "name": "north-cloud-skills",
-      "description": "North-Cloud microservices (Go) development skills covering classifier, crawler, infrastructure, publisher, and search indexing",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./skills/nc-classifier",
-        "./skills/nc-crawler",
-        "./skills/nc-infrastructure",
-        "./skills/nc-publisher",
-        "./skills/nc-search-indexing"
-      ]
-    },
-    {
-      "name": "blog-skills",
-      "description": "Blog and review writing skills for Hugo blogs and film reviews",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./skills/blog-reviewing",
-        "./skills/blog-writing",
-        "./skills/film-review"
-      ]
-    },
-    {
-      "name": "code-quality-skills",
-      "description": "Code quality, architecture, and security review skills for cleaning codebases, monorepo maintenance, security audits, and codified context",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./skills/cleaning-up-codebases",
-        "./skills/codified-context",
-        "./skills/monorepo-cleanup",
-        "./skills/security-review",
-        "./skills/updating-codified-context"
-      ]
-    },
-    {
-      "name": "misc-skills",
-      "description": "Miscellaneous development workflow skills for session documentation and responsive images",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./skills/documenting-session-findings",
-        "./skills/optimizing-responsive-images"
-      ]
+      "name": "skills",
+      "description": "Personal development skills for MyMe, North-Cloud, blogging, code quality, and workflows",
+      "source": "./"
     }
   ]
 }
