@@ -194,11 +194,24 @@ Use this structure in the artifact. Keep platform copy concise; the link drives 
 
 ### Platform notes
 
-- **Facebook:** Longer copy is fine. One or two sentences plus the link. No character limit to target.
+- **Facebook:** Longer copy is fine. One or two sentences plus the link. Include hashtags. No character limit to target.
 - **X (Twitter):** Stay under ~240 characters including the URL so it fits one tweet; put the link at the end.
-- **LinkedIn:** One or two sentences, more professional tone; include the link.
+- **LinkedIn:** One or two sentences, more professional tone; include the link. No hashtags on LinkedIn.
 
 Always include the **canonical URL** in each block so the platform can unfurl it and OG works.
+
+## Accuracy Verification
+
+After writing or updating a post, verify all claims before publishing. Run every check — do not skip items.
+
+| Check | How |
+|-------|-----|
+| Code blocks compile/run | Verify syntax is correct. If referencing a real repo, read the actual source and confirm the code matches. |
+| Tool/product names | Verify tools exist and names are spelled correctly. |
+| Links resolve | Internal links: confirm a post with that slug exists. External links: confirm the URL is valid. |
+| Behavioral claims | "This does X" or "the output looks like this" — verify against actual behavior by running the command or reading the source. |
+| Config/file references | If the post says "add this to Taskfile.yml" or "your lefthook config", verify the file exists and the format matches the real project. |
+| State claims | If the post describes something as already implemented ("I wired X into Y"), verify it actually exists in the referenced repo. Do not present aspirational state as current state. |
 
 ## Common Mistakes
 

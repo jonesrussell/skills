@@ -63,6 +63,9 @@ Run every check. Do not skip items.
 - [ ] External links use full HTTPS URLs
 - [ ] Voice is second person, direct, instructional ("you"/"your", not "I"/"my")
 - [ ] Concise: short sentences, one idea per paragraph, no filler
+- [ ] Em dashes used sparingly (one or two per post max; zero is fine)
+- [ ] Headings are SEO-friendly with keywords (not generic like "The Problem" or "The Full Picture")
+- [ ] Tags match post content (every tag should be substantiated in the body)
 
 ## Findings Format
 
@@ -92,11 +95,44 @@ Always include the line number and a specific fix. Do not report findings withou
   Fix: Change to "Baamaapii" — no emoji
 ```
 
+### Accuracy
+
+- [ ] All code blocks are syntactically correct
+- [ ] Code referencing specific projects matches actual source in that repo
+- [ ] Tool/product names are correct and current
+- [ ] Internal links have matching slugs that exist
+- [ ] External links use valid HTTPS URLs
+- [ ] Behavioral claims ("this does X", "the output looks like") are verifiable
+- [ ] Config/file references match actual state in referenced repos
+- [ ] No aspirational state presented as current state
+
+### Social Media Artifact
+
+- [ ] Companion file exists at `docs/social/{slug}.md`
+- [ ] Canonical URL present and correct
+- [ ] Facebook: includes hashtags
+- [ ] X (Twitter): under ~240 characters including URL
+- [ ] LinkedIn: professional tone, no hashtags
+- [ ] All platform blocks include the canonical URL
+
+## Self-Improving Audit Loop
+
+After completing a review, check whether any finding was **not already covered** by an existing checklist item or common mistakes entry. If so:
+
+1. Add the new check to the appropriate skill file:
+   - New checklist item → `~/dev/skills/skills/blog-reviewing/SKILL.md`
+   - New common mistake → `~/dev/skills/skills/blog-writing/SKILL.md` (Common Mistakes table)
+   - New style rule → both files as appropriate
+2. Sync the updated skill to the installed copy at `~/.claude/skills/blog-*/SKILL.md`
+3. The PR review process on the `~/dev/skills/` repo is the human gate for accepting or rejecting new rules
+
+This ensures every review session that discovers a gap automatically improves future reviews.
+
 ## Batch Mode
 
 When asked to review multiple posts:
 
-1. List all target posts (e.g., all drafts: `grep -l "draft: true" content/posts/*.md`)
+1. List all target posts (e.g., all drafts: `grep -rl "draft: true" content/posts/`)
 2. Identify each post's type (series vs general)
 3. Review each post against the checklist
 4. Group findings by post with a summary count
