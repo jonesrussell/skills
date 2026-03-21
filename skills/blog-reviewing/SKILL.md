@@ -54,12 +54,20 @@ Run every check. Do not skip items.
 - [ ] Try it yourself section with companion repo commands
 - [ ] What's next section linking to next post in series
 
+### Series Consistency (only if `series` field exists)
+
+- [ ] "Part N" references in body text match `series_order` in frontmatter
+- [ ] "Next" teaser points to the correct next post (by `series_order`, not by topic similarity)
+- [ ] "Next" link uses `relref` (or plain text if the target post is future-dated)
+- [ ] No duplicate dates with other posts in the same series
+- [ ] Series overview post (if one exists) lists all posts in the series, including any added after initial planning
+
 ### Content
 
 - [ ] All code blocks have language tags
 - [ ] After each code block: 1-2 sentences explaining what it does or why
 - [ ] First mention of products/tools/projects is linked
-- [ ] Internal links use root-relative format with trailing slash: `/slug/`
+- [ ] Internal links use `relref` shortcode (e.g., `{{< relref "post-slug" >}}`), not root-relative paths
 - [ ] External links use full HTTPS URLs
 - [ ] Voice is second person, direct, instructional ("you"/"your", not "I"/"my")
 - [ ] Concise: short sentences, one idea per paragraph, no filler
@@ -105,6 +113,7 @@ Always include the line number and a specific fix. Do not report findings withou
 - [ ] Behavioral claims ("this does X", "the output looks like") are verifiable
 - [ ] Config/file references match actual state in referenced repos
 - [ ] No aspirational state presented as current state
+- [ ] Code referencing repos in `~/dev/` has been verified against the actual source (AI-generated interface signatures, method names, and class names are frequently hallucinated)
 
 ### Social Media Artifact
 
