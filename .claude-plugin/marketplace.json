@@ -5,13 +5,33 @@
     "email": "jonesrussell42@gmail.com"
   },
   "metadata": {
-    "description": "Personal development skills for MyMe, North-Cloud, blogging, and code quality",
-    "version": "1.0.0"
+    "description": "Personal development skills for blogging, code quality, Waaseyaa framework, and workflows",
+    "version": "1.1.0"
   },
   "plugins": [
     {
-      "name": "skills",
-      "description": "Personal development skills for MyMe, North-Cloud, blogging, code quality, and workflows",
+      "name": "blog-skills",
+      "description": "Blog and review writing skills: blog-writing, blog-reviewing, film-review, session-to-blog, social-media-posts, technical-writing",
+      "source": "./"
+    },
+    {
+      "name": "code-quality-skills",
+      "description": "Code quality, architecture, and security review skills: cleaning-up-codebases, codified-context, monorepo-cleanup, security-review, updating-codified-context",
+      "source": "./"
+    },
+    {
+      "name": "waaseyaa-skills",
+      "description": "Waaseyaa framework development and deployment: laravel-to-waaseyaa, waaseyaa-planning, waaseyaa-site-deploy",
+      "source": "./"
+    },
+    {
+      "name": "workflow-skills",
+      "description": "Development workflow utilities: changelog, documenting-session-findings, optimizing-responsive-images, spec-observability-wiring, triage-issues",
+      "source": "./"
+    },
+    {
+      "name": "planning-skills",
+      "description": "Project planning and orchestration: claudriel-planning, copilot-claudriel, minoo-planning",
       "source": "./"
     }
   ]

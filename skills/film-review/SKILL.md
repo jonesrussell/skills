@@ -1,5 +1,5 @@
 ---
-name: movie-review
+name: film-review
 description: "Use this skill when writing movie reviews for movies-of-war.com. Triggers include requests to review a war film, draft a review from notes, or help structure movie analysis. The skill captures Russell's personal reviewing style influenced by Roger Ebert — conversational authority, specific observations, honest criticism, and a focus on military history."
 ---
 
