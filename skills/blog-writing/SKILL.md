@@ -17,11 +17,13 @@ Write blog posts that match this blog's voice: second person, direct, instructio
 | Farewell | Always close with "Baamaapii" (no emoji, own paragraph) |
 | Voice | Second person, direct, instructional. Address reader as "you"/"your". Not corporate. |
 | Concise | Short sentences. One idea per paragraph. No filler or throat-clearing. |
-| Scoped intro | In the intro, state what the post covers in one sentence |
+| Scoped intro | In the intro, state what the post covers in one sentence. Cover the relevant W's: **What** (what you'll learn), **Why** (why it matters or what problem it solves), **Who** (who it's for, if not obvious). **How** is the body. When/Where are rarely relevant for technical posts. Not all W's apply — use judgment. |
 | Code blocks | Always specify language tag. After each block, add 1-2 sentences explaining what it does or why. For error output, reformat for readability — don't carbon-copy terminal noise. |
 | Links | Link first mention of products, tools, or projects. Internal: use `relref` (e.g., `{{< relref "post-slug" >}}`), never root-relative paths (the `/blog/` base path breaks them). External: full HTTPS URLs. |
 | Headings | H2 for main sections, H3 for variants/subsections. No time estimates. No "Wrapping Up" or "Conclusion". Use SEO-friendly headings with keywords (e.g., "Fix WSL Browser Hangs With BROWSER=echo" not "The Fix"). |
 | Em dashes | Use sparingly. Heavy "—" usage reads as AI-written. Prefer periods (two short sentences), colons, or commas. One or two per post is enough; zero is fine. |
+| Section transitions | End each section with a sentence that creates a reason to read the next one. Open questions, unresolved tension, or a "but" that the next section resolves. Don't let the reader stop comfortably between sections. |
+| No redundant explanation | Don't re-explain a problem the intro already established. If the reader came here because they have the problem, get to the fix. |
 
 ## Frontmatter (Required Fields)
 
@@ -68,6 +70,53 @@ Ahnii!
 
 Baamaapii
 ```
+
+## Post Type: Series Index
+
+Use for the landing page of a multi-part series. Every series gets one index post at `series_order: 0`.
+
+**Additional frontmatter:**
+
+```yaml
+series: ["series-name"]
+series_order: 0
+```
+
+**Structure:**
+
+```
+Ahnii!
+
+[1-2 sentence intro: what the series covers + who it's for]
+
+### 1. [Post Title]({{< relref "post-slug" >}})
+
+[1-2 sentence description of what the post covers]
+
+### 2. [Post Title]({{< relref "post-slug" >}})
+
+[1-2 sentence description]
+
+### 3. Post Title
+
+[1-2 sentence description — plain text because the post is future-dated]
+
+...
+
+[Optional closing sentence, e.g. "Each post stands alone — start wherever you need."]
+
+Baamaapii
+```
+
+**TOC rules:**
+
+| Rule | Detail |
+|------|--------|
+| Format | Numbered H3 headings, one per post in `series_order` |
+| Published posts | Use `relref` links: `[Title]({{< relref "slug" >}})` |
+| Future-dated posts | Plain text only — `relref` fails without `--buildFuture` |
+| Descriptions | 1-2 sentences per entry describing what the post covers |
+| Maintenance | Convert plain text to `relref` links as posts publish |
 
 ## Post Type: Series
 
@@ -233,4 +282,7 @@ After writing or updating a post, verify all claims before publishing. Run every
 | Fabricated code snippets | When a post references real repos, verify every interface signature, method name, and class name against the actual source in `~/dev/`. AI-generated code is frequently hallucinated. |
 | Casual/clickbait phrasing | Avoid phrases like "without losing your mind" or "you won't believe". Use direct, professional language. |
 | Root-relative internal links | Use `relref`, not `/slug/`. Root-relative paths don't account for the `/blog/` base path and produce 404s. |
+| Flat section transitions | Don't end a section and start the next with no pull-through. End with tension, an open question, or a "but" that makes the next heading feel like the answer. |
+| Re-explaining the problem after the intro | If the intro establishes why the reader is here, don't spend the next section repeating it. Get to the fix. |
+| Documentary announcing pattern | Don't open sections with "Two files do most of the work" or "The template." Lead with what the reader needs to know or a question they need answered, not a table of contents for the section. |
 

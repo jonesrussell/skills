@@ -17,6 +17,7 @@ Systematically audit blog posts against the canonical style rules defined in the
 2. Identify the post type (series or general) from frontmatter `series` field
 3. Run through the checklist below in order
 4. Report findings using the standard format
+5. **Auto-generate social copy if missing** — if `docs/social/{slug}.md` does not exist, generate it now using the Social media artifact rules in the blog-writing skill. Do not just flag it as MISSING and move on.
 
 ## Checklist
 
@@ -38,12 +39,23 @@ Run every check. Do not skip items.
 - [ ] Opens with "Ahnii!" (exclamation mark, own paragraph)
 - [ ] Closes with "Baamaapii" (no emoji, own paragraph)
 - [ ] Intro states what the post covers in one sentence (scoped)
+- [ ] Intro covers the relevant W's: **What** (what the reader learns), **Why** (why it matters or what problem it solves), **Who** (who it's for, if not obvious from context). Not all W's are required — use judgment based on post type.
 - [ ] No "Wrapping Up" or "Conclusion" heading
 - [ ] No time estimates in section headings
 - [ ] Heading hierarchy: H2 for main sections, H3 for variants/subsections
 - [ ] Prerequisites section (bullet list) when relevant
 
-### Series Post Structure (only if `series` field exists)
+### Series Index Structure (only if `series_order: 0`)
+
+- [ ] `series_order: 0` in frontmatter
+- [ ] 1-2 sentence intro stating what the series covers and who it's for
+- [ ] Numbered H3 TOC listing every post in the series
+- [ ] Published posts (date <= today) use `relref` links
+- [ ] Future-dated posts use plain text titles (no `relref`)
+- [ ] Each TOC entry has 1-2 sentence description
+- [ ] TOC order matches `series_order` values across the series
+
+### Series Post Structure (only if `series` field exists and `series_order` > 0)
 
 - [ ] Prerequisites blockquote after greeting
 - [ ] Problem statement section
@@ -60,7 +72,7 @@ Run every check. Do not skip items.
 - [ ] "Next" teaser points to the correct next post (by `series_order`, not by topic similarity)
 - [ ] "Next" link uses `relref` (or plain text if the target post is future-dated)
 - [ ] No duplicate dates with other posts in the same series
-- [ ] Series overview post (if one exists) lists all posts in the series, including any added after initial planning
+- [ ] Series index post (`series_order: 0`) exists and lists all posts in the series
 
 ### Content
 
@@ -117,11 +129,11 @@ Always include the line number and a specific fix. Do not report findings withou
 
 ### Social Media Artifact
 
-- [ ] Companion file exists at `docs/social/{slug}.md`
-- [ ] Canonical URL present and correct
-- [ ] Facebook: includes hashtags
-- [ ] X (Twitter): under ~240 characters including URL
-- [ ] LinkedIn: professional tone, no hashtags
+- [ ] Companion file exists at `docs/social/{slug}.md` — **if missing, generate it now** (do not flag and skip)
+- [ ] Canonical URL present and correct (`https://jonesrussell.github.io/blog/{slug}/`)
+- [ ] Facebook: 1-3 sentence hook + link + hashtags
+- [ ] X (Twitter): under ~240 characters including URL, link at end
+- [ ] LinkedIn: professional tone, no hashtags, link included
 - [ ] All platform blocks include the canonical URL
 
 ## Self-Improving Audit Loop
