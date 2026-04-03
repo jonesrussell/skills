@@ -29,6 +29,7 @@ Blog and review writing skills.
 - `film-review` — Write movie reviews for movies-of-war.com
 - `session-to-blog` — Generate Hugo draft posts from Claude Code sessions
 - `social-media-posts` — Create platform-specific promotion copy
+- `substack-writing` — Write Substack newsletter issues for the "Ahnii!" publication
 - `technical-writing` — Non-blog content: docs, READMEs, guides, site copy
 
 ### code-quality-skills
