@@ -87,6 +87,17 @@ Run every check. Do not skip items.
 - [ ] Headings are SEO-friendly with keywords (not generic like "The Problem" or "The Full Picture")
 - [ ] Tags match post content (every tag should be substantiated in the body)
 
+### Visual Components
+
+- [ ] Numbered lists with 3+ items where each item has explanatory content → suggest `steps` shortcode
+- [ ] Inline link CTAs at the end of a project-showcase post → suggest `cta` shortcode
+- [ ] Asides or warnings written as bare paragraphs → suggest `callout` shortcode
+- [ ] More than one `pullquote` shortcode per post → flag as INCORRECT (max one per post)
+- [ ] More than one `cta` shortcode per post → flag as INCORRECT (max one per post)
+- [ ] Component used decoratively without adding information → flag as INCORRECT (walls of decoration are worse than walls of text)
+- [ ] `compare` used for non-before/after contrasts → flag as INCORRECT (use a markdown table instead)
+- [ ] `stats` used in a post without real metrics → flag as INCORRECT (don't invent numbers)
+
 ## Findings Format
 
 Report each finding as:

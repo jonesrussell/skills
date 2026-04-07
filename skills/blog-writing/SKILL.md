@@ -262,6 +262,23 @@ After writing or updating a post, verify all claims before publishing. Run every
 | Config/file references | If the post says "add this to Taskfile.yml" or "your lefthook config", verify the file exists and the format matches the real project. |
 | State claims | If the post describes something as already implemented ("I wired X into Y"), verify it actually exists in the referenced repo. Do not present aspirational state as current state. |
 
+## Visual Components
+
+The blog has six Hugo shortcodes for breaking up walls of text. Use them when they add information; never use them for decoration. Walls of decoration are worse than walls of text.
+
+Spec and rules: `docs/superpowers/specs/2026-04-06-blog-visual-components-design.md`
+
+| Shortcode | Syntax | Use when | Don't use when |
+|-----------|--------|----------|----------------|
+| `callout` | `{{</* callout type="info" */>}}body{{</* /callout */>}}` (types: info, warning, tip, note, success) | Asides, gotchas, version notes, prerequisites | General emphasis, decorating prose |
+| `steps` | `{{</* steps */>}}` containing `{{</* step "Title" */>}}body{{</* /step */>}}` | Sequential processes with 3+ steps where each step has explanation | Short flat lists, non-sequential items |
+| `pullquote` | `{{</* pullquote */>}}line{{</* /pullquote */>}}` | The post's killer line. **Max one per post.** | Decoration, quoting other authors (use `> ` instead) |
+| `cta` | `{{</* cta title="..." button="..." href="..." */>}}body{{</* /cta */>}}` | Single concrete action at a meaningful break. **Max one per post.** | Vague "learn more" links, newsletter signup |
+| `stats` | `{{</* stats */>}}` containing `{{</* stat "N" "Label" */>}}` | Posts where metrics are central | Posts without real metrics, single-stat scenarios |
+| `compare` | `{{</* compare */>}}{{</* before */>}}…{{</* /before */>}}{{</* after */>}}…{{</* /after */>}}{{</* /compare */>}}` | Old way vs new way framings, refactor before/after | Arbitrary contrasts, three-way comparisons |
+
+**Universal rule:** If a component doesn't add information, remove it.
+
 ## Common Mistakes
 
 | Mistake | Fix |
@@ -285,4 +302,6 @@ After writing or updating a post, verify all claims before publishing. Run every
 | Flat section transitions | Don't end a section and start the next with no pull-through. End with tension, an open question, or a "but" that makes the next heading feel like the answer. |
 | Re-explaining the problem after the intro | If the intro establishes why the reader is here, don't spend the next section repeating it. Get to the fix. |
 | Documentary announcing pattern | Don't open sections with "Two files do most of the work" or "The template." Lead with what the reader needs to know or a question they need answered, not a table of contents for the section. |
+| Adding components for visual interest rather than information | Remove the component. Walls of decoration are worse than walls of text. |
+| More than one pullquote or cta per post | Pick the strongest one and delete the rest. Two CTAs means two purposes — split the post. |
 
