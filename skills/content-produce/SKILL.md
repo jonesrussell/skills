@@ -121,7 +121,7 @@ Length target: match similar posts in the same category. The `ai/` posts tend to
 
 ### 7. Draft the social copy file
 
-Invoke `blog-skills:social-media-posts` before writing a single word of copy. That skill defines the authoritative platform rules (X char limits, hashtag policy, GitHub link requirements, voice). Do not reproduce those rules here — follow the skill directly.
+Invoke `social-media-posts` before writing a single word of copy. That skill defines the authoritative platform rules (X char limits, hashtag policy, GitHub link requirements, voice). Do not reproduce those rules here — follow the skill directly.
 
 Save the output to `docs/social/<slug>.md` in the blog repo. The format that `/content-pipeline` expects:
 

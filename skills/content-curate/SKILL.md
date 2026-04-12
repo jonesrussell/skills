@@ -36,7 +36,7 @@ Present `stage:mined` content queue issues as a batch for quick human decisions:
      ```bash
      gh issue edit <N> --repo jonesrussell/jonesrussell --remove-label "stage:mined" --add-label "stage:curated"
      ```
-     After labeling, fetch the source issue for full context, then invoke `blog-skills:social-media-posts` before writing a single word of copy. This is mandatory — not optional, not "check after." The skill defines platform rules (X char limits, hashtag policy, GitHub link requirements) that cannot be reliably recalled from memory.
+     After labeling, fetch the source issue for full context, then invoke `social-media-posts` before writing a single word of copy. This is mandatory — not optional, not "check after." The skill defines platform rules (X char limits, hashtag policy, GitHub link requirements) that cannot be reliably recalled from memory.
    - **Skip** — close with skip label:
      ```bash
      gh issue close <N> --repo jonesrussell/jonesrussell
