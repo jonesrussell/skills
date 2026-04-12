@@ -2,7 +2,7 @@
 # Post to a Buffer channel via GraphQL API
 # Usage: ./buffer-post.sh <platform> <text> [mode] [first_comment_url]
 # platform: facebook, twitter, linkedin
-# mode: addToQueue (default), shareNow, customScheduled
+# mode: addToQueue (default), shareNow, customScheduled, saveToDraft
 # first_comment_url: URL to post as first comment (linkedin and facebook only; X is manual self-reply)
 # For customScheduled, set DUE_AT env var to ISO8601 datetime
 # Channel IDs and API key are read from Ansible vault automatically.
@@ -61,6 +61,12 @@ due_at = sys.argv[5] if len(sys.argv) > 5 else ''
 first_comment_url = sys.argv[6] if len(sys.argv) > 6 else ''
 api_key = sys.argv[7]
 
+# saveToDraft is a boolean field, not a ShareMode enum value
+save_to_draft_field = ''
+if mode == 'saveToDraft':
+    save_to_draft_field = 'saveToDraft: true'
+    mode = 'addToQueue'
+
 due_at_field = f'dueAt: \"{due_at}\"' if mode == 'customScheduled' and due_at else ''
 
 # Platform-specific metadata (type + optional firstComment)
@@ -80,6 +86,7 @@ query = f'''mutation {{
     mode: {mode}
     schedulingType: automatic
     {due_at_field}
+    {save_to_draft_field}
     {metadata_field}
   }}) {{
     ... on PostActionSuccess {{
