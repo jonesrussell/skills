@@ -27,6 +27,9 @@ class Target:
     ignored_names: tuple[str, ...] = ()
 
 
+CLAUDE_DIRECT_DIR = Path.home() / ".claude/skills"
+CLAUDE_DIRECT_IGNORED = ("archetypes", "docs", "skills", "spec", "template")
+
 TARGETS = {
     "codex": Target(
         "codex",
@@ -37,6 +40,13 @@ TARGETS = {
     ),
     "cursor": Target("cursor", CURSOR_SKILLS_DIR, "symlink", "Installs custom skills in `~/.cursor/skills`, not `~/.cursor/skills-cursor`."),
     "claude": Target("claude", CLAUDE_MARKETPLACE_DIR / "skills", "symlink", "Treats the installed marketplace checkout as a mirror only."),
+    "claude-direct": Target(
+        "claude-direct",
+        CLAUDE_DIRECT_DIR,
+        "symlink",
+        "Symlinks skills directly into ~/.claude/skills/ — the canonical source for Claude Code.",
+        CLAUDE_DIRECT_IGNORED,
+    ),
 }
 
 CLAUDE_METADATA_FILES = (
