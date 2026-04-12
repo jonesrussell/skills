@@ -83,9 +83,16 @@ Run every check. Do not skip items.
 - [ ] External links use full HTTPS URLs
 - [ ] Voice is second person, direct, instructional ("you"/"your", not "I"/"my")
 - [ ] Concise: short sentences, one idea per paragraph, no filler
-- [ ] Em dashes used sparingly (one or two per post max; zero is fine)
+- [ ] Em dashes used intentionally and sparingly (one or two per post max; zero is fine)
+- [ ] Contrast constructions like "X is not Y, it is Z" are used intentionally, not repeated as a crutch
+- [ ] Sentence cadence varies enough that the draft does not read mechanically repetitive
+- [ ] Generic AI-jargon filler ("robust", "seamless", "transformative", "momentum") is replaced with concrete wording
 - [ ] Headings are SEO-friendly with keywords (not generic like "The Problem" or "The Full Picture")
 - [ ] Tags match post content (every tag should be substantiated in the body)
+- [ ] Wordy flow/pipeline/architecture explanations replaced with Mermaid diagrams (3+ sentences describing a flow or component relationship is a signal to use a diagram instead)
+- [ ] Named concepts (interfaces, classes, patterns) are explained in plain language before being introduced by name
+- [ ] Prose doesn't narrate what adjacent code already shows (if a bullet list describes what a method does and the code block shows the same thing, delete the list)
+- [ ] Behavioral claims ("you can do X", "this prevents Y") are backed by a code example showing the behavior
 
 ### Visual Components
 
@@ -177,4 +184,3 @@ When asked to review multiple posts:
 ## [post-slug.md] — [N findings: ...]
 [findings]
 ```
-

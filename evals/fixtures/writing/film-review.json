@@ -1,0 +1,18 @@
+{
+  "skill": "film-review",
+  "suite": "writing",
+  "version": "2026-04-11",
+  "hard_rule_checks": [],
+  "cases": [
+    {
+      "case_id": "review_happy_path",
+      "prompt": "Write a concise war film review with a clear thesis and specific scenes.",
+      "expected_artifact": "markdown_review",
+      "rubric_targets": [
+        "voice_fidelity",
+        "structure_compliance",
+        "clarity"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "status": "improvement",
+  "baseline_rule_failures": 0,
+  "candidate_rule_failures": 0,
+  "rule_failure_delta": 0,
+  "metric_comparisons": [
+    {
+      "name": "pass_rate",
+      "baseline": 1.0,
+      "candidate": 1.0,
+      "delta": 0.0
+    }
+  ],
+  "style_signal_comparisons": [
+    {
+      "name": "avg_paragraph_length",
+      "baseline": 20.626623376623378,
+      "candidate": 21.667763157894736,
+      "delta": 1.041139781271358
+    },
+    {
+      "name": "avg_sentence_length",
+      "baseline": 14.438636363636364,
+      "candidate": 14.165591397849463,
+      "delta": -0.27304496578690163
+    },
+    {
+      "name": "contrast_pattern_count",
+      "baseline": 14,
+      "candidate": 11,
+      "delta": -3
+    },
+    {
+      "name": "em_dash_count",
+      "baseline": 0,
+      "candidate": 0,
+      "delta": 0
+    },
+    {
+      "name": "sentence_length_variance",
+      "baseline": 97.3689617768595,
+      "candidate": 87.34247196207654,
+      "delta": -10.026489814782963
+    }
+  ],
+  "regressions": [],
+  "improvements": [
+    "contrast_pattern_count"
+  ]
+}

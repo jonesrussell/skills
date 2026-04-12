@@ -1,0 +1,63 @@
+{
+  "skill": "blog-reviewing",
+  "suite": "writing",
+  "version": "2026-04-11",
+  "hard_rule_checks": [],
+  "cases": [
+    {
+      "case_id": "style_audit_happy_path",
+      "prompt": "Review a draft blog post for structure, voice, and missing social copy.",
+      "expected_artifact": "markdown_review",
+      "include_in_style_signals": false,
+      "rubric_targets": [
+        "voice_fidelity",
+        "structure_compliance",
+        "clarity"
+      ]
+    },
+    {
+      "case_id": "contrast_pattern_review_case",
+      "prompt": "Review a draft that repeatedly uses 'this is not X, it is Y' framing and decide whether the review catches the pattern as overused rather than forbidden.",
+      "expected_artifact": "markdown_review",
+      "include_in_style_signals": false,
+      "rubric_targets": [
+        "clarity",
+        "sentence_variety",
+        "anti_pattern_frequency"
+      ]
+    },
+    {
+      "case_id": "em_dash_audit_case",
+      "prompt": "Review a draft blog post with frequent em dashes and decide whether the review calls for more intentional punctuation choices.",
+      "expected_artifact": "markdown_review",
+      "include_in_style_signals": false,
+      "rubric_targets": [
+        "clarity",
+        "punctuation_restraint",
+        "anti_pattern_frequency"
+      ]
+    },
+    {
+      "case_id": "flat_cadence_review_case",
+      "prompt": "Review a draft that is technically correct but has repetitive sentence length and paragraph rhythm throughout.",
+      "expected_artifact": "markdown_review",
+      "include_in_style_signals": false,
+      "rubric_targets": [
+        "clarity",
+        "sentence_variety",
+        "voice_fidelity"
+      ]
+    },
+    {
+      "case_id": "filler_jargon_review_case",
+      "prompt": "Review a draft blog post that defaults to generic AI-sounding phrases such as robust, seamless, and game-changing instead of concrete advice.",
+      "expected_artifact": "markdown_review",
+      "include_in_style_signals": false,
+      "rubric_targets": [
+        "clarity",
+        "voice_fidelity",
+        "anti_pattern_frequency"
+      ]
+    }
+  ]
+}

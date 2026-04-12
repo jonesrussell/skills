@@ -33,6 +33,10 @@ Display as: `★★` or `★★★½` (half-stars acceptable)
 - Note when a film inspires further historical research (this is a positive)
 - Make casual comparisons to other war films when useful
 - Keep it concise — aim for 400-600 words, not 1000+
+- Use em dashes sparingly and on purpose. Zero is fine. Heavy "—" usage reads AI-written and weakens the cadence.
+- Vary sentence rhythm. A review can be sharp and direct without every sentence landing the same way.
+- Avoid double-negative contrast turns like "does not X, but it also does not Y." Write the direct sentence instead.
+- Avoid casual opposition fillers like "rather than" or "instead of" when a plain descriptive sentence is stronger. Save contrast for real analytical weight.
 
 **Don't:**
 - Use academic film jargon
@@ -40,11 +44,12 @@ Display as: `★★` or `★★★½` (half-stars acceptable)
 - List plot points without analysis
 - Over-explain historical context (readers are war history enthusiasts)
 - Pad with generic praise or filler
+- Lean on formulaic contrasts such as "X is not Y, it is Z." Once may work. Repetition reads formulaic and AI-written. If the point lands better as a direct sentence, write the direct sentence.
 
 ## Structure
 
 ```markdown
-# [Title] ([Year]) — [Star Rating]
+# [Title] ([Year]): [Star Rating]
 
 *Directed by [Director]. Starring [Top 3-4 Cast]. [Runtime].*
 
@@ -92,7 +97,7 @@ Strong openings that establish a thesis:
 
 > "Saving Private Ryan" earns its reputation in two sequences and coasts on goodwill for the rest.
 
-> The problem with "Pearl Harbor" isn't the history — it's that Michael Bay thinks the love triangle is more interesting than the war.
+> The problem with "Pearl Harbor" is not the history. Michael Bay thinks the love triangle is more interesting than the war.
 
 ## Comparisons
 
@@ -106,9 +111,9 @@ When comparing films (e.g., 1976 Midway vs. 2019 Midway):
 - Markdown for the site
 - Use `---` horizontal rule after the metadata line
 - Star rating in heading AND at bottom
+- Use a colon in the heading before the star rating. Avoid an em dash there.
 - Keep paragraphs readable (4-6 sentences max)
 
 ## Dependencies
 
 None — plain markdown output for movies-of-war.com
-

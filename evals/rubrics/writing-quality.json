@@ -1,0 +1,31 @@
+{
+  "rubric_id": "writing-quality",
+  "suite": "writing",
+  "version": "2026-04-09",
+  "criteria": [
+    {
+      "criterion_id": "voice_fidelity",
+      "description": "Matches the canonical voice and tone for the skill."
+    },
+    {
+      "criterion_id": "structure_compliance",
+      "description": "Uses the required structure for the content type."
+    },
+    {
+      "criterion_id": "clarity",
+      "description": "Stays concrete, concise, and easy to scan."
+    },
+    {
+      "criterion_id": "sentence_variety",
+      "description": "Varies sentence length and cadence instead of sounding mechanically repetitive."
+    },
+    {
+      "criterion_id": "punctuation_restraint",
+      "description": "Uses punctuation sparingly and avoids overusing em dashes or similar stylistic markers."
+    },
+    {
+      "criterion_id": "anti_pattern_frequency",
+      "description": "Avoids repeated AI-writing patterns such as formulaic contrast structures and filler phrasing."
+    }
+  ]
+}

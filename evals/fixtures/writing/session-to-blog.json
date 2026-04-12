@@ -1,0 +1,26 @@
+{
+  "skill": "session-to-blog",
+  "suite": "writing",
+  "version": "2026-04-11",
+  "hard_rule_checks": [
+    "artifact_path_pattern"
+  ],
+  "hard_rules": {
+    "artifact_path_pattern": {
+      "prefix": "content/posts/",
+      "suffix": "/index.md"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "session_summary_happy_path",
+      "prompt": "Turn a coding session into a blog draft with a problem, approach, solution, and takeaway.",
+      "expected_artifact": "markdown_document",
+      "rubric_targets": [
+        "voice_fidelity",
+        "structure_compliance",
+        "clarity"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "skill": "technical-writing",
+  "suite": "writing",
+  "version": "2026-04-11",
+  "hard_rule_checks": [],
+  "cases": [
+    {
+      "case_id": "doc_page_happy_path",
+      "prompt": "Write a short documentation page for a repo README.",
+      "expected_artifact": "markdown_document",
+      "rubric_targets": [
+        "voice_fidelity",
+        "structure_compliance",
+        "clarity"
+      ]
+    },
+    {
+      "case_id": "contrast_pattern_doc_case",
+      "prompt": "Write README copy for a framework feature without leaning on repeated 'it is not X, it is Y' contrast lines.",
+      "expected_artifact": "markdown_document",
+      "rubric_targets": [
+        "clarity",
+        "sentence_variety",
+        "anti_pattern_frequency"
+      ]
+    },
+    {
+      "case_id": "em_dash_heavy_doc_case",
+      "prompt": "Write a short guide section about a deployment command where the source notes are full of interruptions and em-dash-heavy asides.",
+      "expected_artifact": "markdown_document",
+      "rubric_targets": [
+        "clarity",
+        "punctuation_restraint",
+        "anti_pattern_frequency"
+      ]
+    },
+    {
+      "case_id": "flat_cadence_doc_case",
+      "prompt": "Write a documentation section for a configuration workflow with enough rhythm and sentence variation to stay readable.",
+      "expected_artifact": "markdown_document",
+      "rubric_targets": [
+        "clarity",
+        "sentence_variety",
+        "voice_fidelity"
+      ]
+    },
+    {
+      "case_id": "filler_jargon_doc_case",
+      "prompt": "Write technical copy for a package overview where the source notes use generic words like powerful, seamless, robust, and comprehensive.",
+      "expected_artifact": "markdown_document",
+      "rubric_targets": [
+        "clarity",
+        "voice_fidelity",
+        "anti_pattern_frequency"
+      ]
+    }
+  ]
+}

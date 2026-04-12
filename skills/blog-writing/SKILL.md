@@ -21,9 +21,18 @@ Write blog posts that match this blog's voice: second person, direct, instructio
 | Code blocks | Always specify language tag. After each block, add 1-2 sentences explaining what it does or why. For error output, reformat for readability — don't carbon-copy terminal noise. |
 | Links | Link first mention of products, tools, or projects. Internal: use `relref` (e.g., `{{< relref "post-slug" >}}`), never root-relative paths (the `/blog/` base path breaks them). External: full HTTPS URLs. |
 | Headings | H2 for main sections, H3 for variants/subsections. No time estimates. No "Wrapping Up" or "Conclusion". Use SEO-friendly headings with keywords (e.g., "Fix WSL Browser Hangs With BROWSER=echo" not "The Fix"). |
-| Em dashes | Use sparingly. Heavy "—" usage reads as AI-written. Prefer periods (two short sentences), colons, or commas. One or two per post is enough; zero is fine. |
+| Em dashes | Use sparingly and on purpose. Heavy "—" usage reads as AI-written. Prefer periods (two short sentences), colons, or commas. One or two per post is enough; zero is fine. |
+| Contrast constructions | Don't keep reaching for "X is not Y, it is Z." Once can work. Repetition reads formulaic and AI-written. If the point lands better as a direct sentence, write the direct sentence. |
+| Negative framing | Avoid stacking "do not," "does not," "not enough," or repeated "instead of" moves when the direct sentence would be clearer. "Put the defaults in the repo" is better than "keep defaults in the repo instead of your head." |
+| Sentence variety | Mix short and medium sentences so the post has rhythm. Avoid sections where every sentence lands at the same length or every paragraph follows the same beat. |
+| Filler and jargon | Cut generic AI-sounding words such as "robust," "seamless," "transformative," "game-changing," and "momentum" unless the term is concrete and necessary. Say what the thing does. |
 | Section transitions | End each section with a sentence that creates a reason to read the next one. Open questions, unresolved tension, or a "but" that the next section resolves. Don't let the reader stop comfortably between sections. |
 | No redundant explanation | Don't re-explain a problem the intro already established. If the reader came here because they have the problem, get to the fix. |
+| Diagrams | When explaining flows, pipelines, or relationships between components, use a Mermaid diagram instead of (or alongside) prose. A ```` ```mermaid ```` code block renders natively. Use diagrams for: request/response flows, architecture layers, state machines, data pipelines. Don't use diagrams for: simple lists, single-step processes, or anything that's clearer as a sentence. |
+| Explain before naming | Before introducing a named concept (interface, class, pattern), explain what it does in plain language. "A domain router owns one slice of request handling" before showing `DomainRouterInterface`. The reader needs the "what" before the "how." |
+| Show, don't describe | If you're writing a sentence like "the handle() method routes to X, Y, and Z", put X/Y/Z in the code example instead. Prose that narrates what code does is redundant when the code is right there. Combine the description into the code block. |
+| Back up claims with code | Every behavioral claim ("you can add a new action without changing X") needs an example showing it. If you can't show it, reconsider whether the claim is accurate. |
+| Prefer direct imperatives | When you are teaching, prefer direct instructions over contrast setup. Write "Verify the workflow on a fresh shell" rather than "Do not trust the workflow because it looks tidy." |
 
 ## Frontmatter (Required Fields)
 
@@ -40,6 +49,15 @@ draft: true
 ```
 
 For series posts, add: `series: ["series-name"]`
+
+## File Output
+
+Write the primary post artifact as a Hugo leaf bundle:
+
+- Primary file: `content/posts/{slug}/index.md`
+- Use the same `slug` from frontmatter for the directory name
+- Do not write standalone post files like `content/posts/{slug}.md`
+- Frontmatter comes first in the file. `Ahnii!` is the first content paragraph after frontmatter, not before it.
 
 ## Post Type: General
 
@@ -304,4 +322,10 @@ Spec and rules: `docs/superpowers/specs/2026-04-06-blog-visual-components-design
 | Documentary announcing pattern | Don't open sections with "Two files do most of the work" or "The template." Lead with what the reader needs to know or a question they need answered, not a table of contents for the section. |
 | Adding components for visual interest rather than information | Remove the component. Walls of decoration are worse than walls of text. |
 | More than one pullquote or cta per post | Pick the strongest one and delete the rest. Two CTAs means two purposes — split the post. |
-
+| Wordy explanations of visual concepts | If you're writing 3+ sentences to describe a flow, pipeline, or component relationship, replace the prose with a Mermaid diagram. Diagrams communicate structure faster than paragraphs. |
+| Naming things without explaining them | Don't drop a class/interface name as a section heading and jump straight to code. Open with 1-2 sentences explaining what it is and why the reader should care. |
+| Narrating code instead of showing it | "The method does A, B, and C" followed by a code block that shows A, B, and C. Delete the narration and let the code speak, or fold the explanation into the code as comments. |
+| Unverified behavioral claims | "You can't disable the last entity type without a force flag" sounds great but must exist in the actual source. Every claim about what code does must be verified. |
+| Repeating "X is not Y, it is Z." style lines | Keep the move if it earns emphasis once. If the draft keeps using that contrast shape, rewrite most of them as direct statements. |
+| Flat sentence cadence | If three or four sentences in a row land with the same rhythm, vary the length and structure. A blog post should sound intentional, not metronomic. |
+| Generic AI-jargon filler | Replace vague language like "robust," "seamless," "transformative," or "momentum" with the exact behavior, outcome, or tradeoff. |

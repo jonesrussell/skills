@@ -1,0 +1,173 @@
+{
+  "general_howto_happy_path": {
+    "case_id": "general_howto_happy_path",
+    "passed": true,
+    "output": "Ahnii!\n\nMock output for blog-writing.\n\nBaamaapii",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "content/posts/mock-blog/index.md"
+  },
+  "contrast_pattern_overuse_case": {
+    "case_id": "contrast_pattern_overuse_case",
+    "passed": true,
+    "output": "Ahnii!\n\nThis is not setup, it is leverage.\n\nBaamaapii",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "content/posts/mock-blog/index.md"
+  },
+  "em_dash_heavy_case": {
+    "case_id": "em_dash_heavy_case",
+    "passed": true,
+    "output": "Ahnii!\n\nThis works, and you can keep going.\n\nBaamaapii",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "content/posts/mock-blog/index.md"
+  },
+  "flat_cadence_case": {
+    "case_id": "flat_cadence_case",
+    "passed": true,
+    "output": "Ahnii!\n\nYou run the command. You inspect the result. Then you move.\n\nBaamaapii",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "content/posts/mock-blog/index.md"
+  },
+  "filler_jargon_case": {
+    "case_id": "filler_jargon_case",
+    "passed": true,
+    "output": "Ahnii!\n\nThe workflow saves you a few repeated steps.\n\nBaamaapii",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "content/posts/mock-blog/index.md"
+  },
+  "style_audit_happy_path": {
+    "case_id": "style_audit_happy_path",
+    "passed": true,
+    "output": "Mock output for blog-reviewing",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/blog-reviewing.md"
+  },
+  "contrast_pattern_review_case": {
+    "case_id": "contrast_pattern_review_case",
+    "passed": true,
+    "output": "Review notes: this is not a structure problem, it is a cadence problem.",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/blog-reviewing.md"
+  },
+  "em_dash_audit_case": {
+    "case_id": "em_dash_audit_case",
+    "passed": true,
+    "output": "Review notes on punctuation restraint.",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/blog-reviewing.md"
+  },
+  "flat_cadence_review_case": {
+    "case_id": "flat_cadence_review_case",
+    "passed": true,
+    "output": "Review notes on sentence cadence.",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/blog-reviewing.md"
+  },
+  "filler_jargon_review_case": {
+    "case_id": "filler_jargon_review_case",
+    "passed": true,
+    "output": "Review notes on filler and jargon.",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/blog-reviewing.md"
+  },
+  "doc_page_happy_path": {
+    "case_id": "doc_page_happy_path",
+    "passed": true,
+    "output": "Mock output for technical-writing",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/technical-writing.md"
+  },
+  "contrast_pattern_doc_case": {
+    "case_id": "contrast_pattern_doc_case",
+    "passed": true,
+    "output": "Mock output for technical-writing contrast case",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/technical-writing.md"
+  },
+  "em_dash_heavy_doc_case": {
+    "case_id": "em_dash_heavy_doc_case",
+    "passed": true,
+    "output": "Mock output for technical-writing punctuation case",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/technical-writing.md"
+  },
+  "flat_cadence_doc_case": {
+    "case_id": "flat_cadence_doc_case",
+    "passed": true,
+    "output": "Mock output for technical-writing cadence case",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/technical-writing.md"
+  },
+  "filler_jargon_doc_case": {
+    "case_id": "filler_jargon_doc_case",
+    "passed": true,
+    "output": "Mock output for technical-writing jargon case",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/technical-writing.md"
+  },
+  "dev_work_post_happy_path": {
+    "case_id": "dev_work_post_happy_path",
+    "passed": true,
+    "output": "Mock output for social-media-posts",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "docs/social/mock-blog.md"
+  },
+  "newsletter_happy_path": {
+    "case_id": "newsletter_happy_path",
+    "passed": true,
+    "output": "Ahnii!\n\nMock output for substack-writing.\n\nBaamaapii",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "~/brand/mock-newsletter.md"
+  },
+  "review_happy_path": {
+    "case_id": "review_happy_path",
+    "passed": true,
+    "output": "Mock output for film-review",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "evals/results/mock/film-review.md"
+  },
+  "session_summary_happy_path": {
+    "case_id": "session_summary_happy_path",
+    "passed": true,
+    "output": "Mock output for session-to-blog",
+    "messages": [
+      "mock runner used"
+    ],
+    "artifact_path": "content/posts/mock-session/index.md"
+  }
+}

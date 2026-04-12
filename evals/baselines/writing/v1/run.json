@@ -1,0 +1,197 @@
+{
+  "suite": "writing",
+  "skill": "__suite__",
+  "runner": "mock",
+  "generated_at": "2026-04-11T06:57:56Z",
+  "summary": "blog-reviewing:style_audit_happy_path -> PASS\nblog-reviewing:contrast_pattern_review_case -> PASS\nblog-reviewing:em_dash_audit_case -> PASS\nblog-reviewing:flat_cadence_review_case -> PASS\nblog-reviewing:filler_jargon_review_case -> PASS\nblog-writing:general_howto_happy_path -> PASS\nblog-writing:contrast_pattern_overuse_case -> PASS\nblog-writing:em_dash_heavy_case -> PASS\nblog-writing:flat_cadence_case -> PASS\nblog-writing:filler_jargon_case -> PASS\nfilm-review:review_happy_path -> PASS\nsession-to-blog:session_summary_happy_path -> PASS\nsocial-media-posts:dev_work_post_happy_path -> PASS\nsubstack-writing:newsletter_happy_path -> PASS\ntechnical-writing:doc_page_happy_path -> PASS\ntechnical-writing:contrast_pattern_doc_case -> PASS\ntechnical-writing:em_dash_heavy_doc_case -> PASS\ntechnical-writing:flat_cadence_doc_case -> PASS\ntechnical-writing:filler_jargon_doc_case -> PASS",
+  "cases": [
+    {
+      "case_id": "style_audit_happy_path",
+      "passed": true,
+      "output": "Mock output for blog-reviewing",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-reviewing.md"
+    },
+    {
+      "case_id": "contrast_pattern_review_case",
+      "passed": true,
+      "output": "Review notes: this is not a structure problem, it is a cadence problem.",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-reviewing.md"
+    },
+    {
+      "case_id": "em_dash_audit_case",
+      "passed": true,
+      "output": "Review notes on punctuation restraint.",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-reviewing.md"
+    },
+    {
+      "case_id": "flat_cadence_review_case",
+      "passed": true,
+      "output": "Review notes on sentence cadence.",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-reviewing.md"
+    },
+    {
+      "case_id": "filler_jargon_review_case",
+      "passed": true,
+      "output": "Review notes on filler and jargon.",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-reviewing.md"
+    },
+    {
+      "case_id": "general_howto_happy_path",
+      "passed": true,
+      "output": "Mock output for blog-writing",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-writing.md"
+    },
+    {
+      "case_id": "contrast_pattern_overuse_case",
+      "passed": true,
+      "output": "Mock output for blog-writing contrast case",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-writing.md"
+    },
+    {
+      "case_id": "em_dash_heavy_case",
+      "passed": true,
+      "output": "Mock output for blog-writing punctuation case",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-writing.md"
+    },
+    {
+      "case_id": "flat_cadence_case",
+      "passed": true,
+      "output": "Mock output for blog-writing cadence case",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-writing.md"
+    },
+    {
+      "case_id": "filler_jargon_case",
+      "passed": true,
+      "output": "Mock output for blog-writing jargon case",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/blog-writing.md"
+    },
+    {
+      "case_id": "review_happy_path",
+      "passed": true,
+      "output": "Mock output for film-review",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/film-review.md"
+    },
+    {
+      "case_id": "session_summary_happy_path",
+      "passed": true,
+      "output": "Mock output for session-to-blog",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/session-to-blog.md"
+    },
+    {
+      "case_id": "dev_work_post_happy_path",
+      "passed": true,
+      "output": "Mock output for social-media-posts",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/social-media-posts.md"
+    },
+    {
+      "case_id": "newsletter_happy_path",
+      "passed": true,
+      "output": "Mock output for substack-writing",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/substack-writing.md"
+    },
+    {
+      "case_id": "doc_page_happy_path",
+      "passed": true,
+      "output": "Mock output for technical-writing",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/technical-writing.md"
+    },
+    {
+      "case_id": "contrast_pattern_doc_case",
+      "passed": true,
+      "output": "Mock output for technical-writing contrast case",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/technical-writing.md"
+    },
+    {
+      "case_id": "em_dash_heavy_doc_case",
+      "passed": true,
+      "output": "Mock output for technical-writing punctuation case",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/technical-writing.md"
+    },
+    {
+      "case_id": "flat_cadence_doc_case",
+      "passed": true,
+      "output": "Mock output for technical-writing cadence case",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/technical-writing.md"
+    },
+    {
+      "case_id": "filler_jargon_doc_case",
+      "passed": true,
+      "output": "Mock output for technical-writing jargon case",
+      "messages": [
+        "mock runner used"
+      ],
+      "artifact_path": "evals/results/mock/technical-writing.md"
+    }
+  ],
+  "style_signals": {
+    "em_dash_count": 0,
+    "contrast_pattern_count": 1,
+    "avg_sentence_length": 7.043478260869565,
+    "sentence_length_variance": 6.128544423440454,
+    "avg_paragraph_length": 8.526315789473685
+  },
+  "metadata": {
+    "runner": "mock",
+    "fixture_version": "2026-04-10",
+    "rubric_version": "2026-04-09",
+    "generated_at": "2026-04-11T06:57:56Z"
+  },
+  "rule_failures": 0,
+  "rubric": {
+    "pass_rate": 1.0
+  }
+}

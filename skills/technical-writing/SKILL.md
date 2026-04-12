@@ -25,7 +25,7 @@ Write technical content (docs, site copy, READMEs, guides) that matches Russell'
 | Code blocks | Always specify language tag. After each block, add 1-2 sentences explaining what it does or why. |
 | Links | Link first mention of products, tools, or projects. |
 | Headings | H2 for main sections, H3 for subsections. Descriptive, keyword-rich. "Define Your Entity Type" not "Step 1". No "Wrapping Up" or "Conclusion". |
-| Em dashes | Use sparingly. Prefer periods (two short sentences), colons, or commas. One or two per file maximum. Zero is fine. |
+| Em dashes | Use sparingly and on purpose. Prefer periods (two short sentences), colons, or commas. One or two per file maximum. Zero is fine. |
 
 ## What to Avoid
 
@@ -36,6 +36,9 @@ Write technical content (docs, site copy, READMEs, guides) that matches Russell'
 | First person | No "I found", "my setup", "we built". Use "you" throughout. |
 | Abstract descriptions | Concrete. "43 packages across 7 layers" not "a modular, extensible architecture." |
 | Em dash overuse | Heavy "—" usage reads as AI-written. Replace with periods, colons, commas. |
+| Formulaic contrast constructions | Don't keep repeating lines like "X is not Y, it is Z." If the point is clear without the contrast move, write the direct sentence. |
+| Casual opposition fillers | Avoid low-value "instead of" and "rather than" phrasing when a direct sentence is clearer. Keep contrast for real tradeoffs, not connective tissue. |
+| Flat cadence | Vary sentence and paragraph length. Documentation can be plain without sounding mechanically repetitive. |
 | Throat-clearing intros | State what the page/section covers in one sentence. No "In this guide, we will explore..." |
 | Generic headings | "Check Access in Controllers" not "Checking Access" or "How to Check Access". Use imperative form. |
 | "Wrapping Up" / "Conclusion" / "Summary" sections | End naturally. No closing header needed. |
@@ -135,7 +138,9 @@ Before finishing any technical writing task, verify:
 
 - [ ] Second person throughout (no "we", "I", or passive voice)
 - [ ] No more than 1-2 em dashes in the entire file
+- [ ] Contrast constructions like "X is not Y, it is Z" are not repeated as a stylistic crutch
 - [ ] No marketing fluff words ("powerful", "seamlessly", "robust")
+- [ ] Sentence cadence varies enough that the page does not sound mechanically repetitive
 - [ ] Every code block has 1-2 sentences of explanation after it
 - [ ] Headings are descriptive and keyword-rich (imperative form)
 - [ ] No "Wrapping Up", "Conclusion", or "Summary" section

@@ -1,0 +1,80 @@
+{
+  "skill": "blog-writing",
+  "suite": "writing",
+  "version": "2026-04-11",
+  "hard_rule_checks": [
+    "required_greeting",
+    "required_farewell",
+    "artifact_path_pattern"
+  ],
+  "hard_rules": {
+    "required_greeting": {
+      "text": "Ahnii!",
+      "paragraph_position": "first"
+    },
+    "required_farewell": {
+      "text": "Baamaapii",
+      "paragraph_position": "last"
+    },
+    "artifact_path_pattern": {
+      "prefix": "content/posts/",
+      "suffix": "/index.md"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "general_howto_happy_path",
+      "prompt": "Draft a blog post about a local development workflow.",
+      "expected_artifact": "markdown_document",
+      "rubric_targets": [
+        "voice_fidelity",
+        "structure_compliance",
+        "clarity"
+      ]
+    },
+    {
+      "case_id": "contrast_pattern_overuse_case",
+      "prompt": "Draft a blog post opening about local-first development that keeps leaning on punchy contrasts like 'this is not X, it is Y' to make the point.",
+      "expected_artifact": "markdown_document",
+      "hard_rule_checks": [],
+      "rubric_targets": [
+        "clarity",
+        "sentence_variety",
+        "anti_pattern_frequency"
+      ]
+    },
+    {
+      "case_id": "em_dash_heavy_case",
+      "prompt": "Draft a short blog post section about a toolchain migration with a voice that likes stacked interruptions and parenthetical asides.",
+      "expected_artifact": "markdown_document",
+      "hard_rule_checks": [],
+      "rubric_targets": [
+        "clarity",
+        "punctuation_restraint",
+        "anti_pattern_frequency"
+      ]
+    },
+    {
+      "case_id": "flat_cadence_case",
+      "prompt": "Draft a blog post section that explains a repeatable workflow in plain, direct language without becoming monotonous.",
+      "expected_artifact": "markdown_document",
+      "hard_rule_checks": [],
+      "rubric_targets": [
+        "clarity",
+        "sentence_variety",
+        "voice_fidelity"
+      ]
+    },
+    {
+      "case_id": "filler_jargon_case",
+      "prompt": "Draft a blog post section about a development process where the source notes contain vague language like momentum, seamless, robust, and transformative.",
+      "expected_artifact": "markdown_document",
+      "hard_rule_checks": [],
+      "rubric_targets": [
+        "clarity",
+        "voice_fidelity",
+        "anti_pattern_frequency"
+      ]
+    }
+  ]
+}

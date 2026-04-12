@@ -1,0 +1,59 @@
+{
+  "suite": "writing",
+  "skill": "__suite__",
+  "runner": "codex",
+  "generated_at": "2026-04-11T08:30:04Z",
+  "summary": "blog-writing:general_howto_happy_path -> PASS\nblog-reviewing:style_audit_happy_path -> PASS\ntechnical-writing:doc_page_happy_path -> PASS",
+  "cases": [
+    {
+      "case_id": "general_howto_happy_path",
+      "passed": true,
+      "output": "---\ntitle: \"A local development workflow you can keep\"\ndate: 2026-04-11\ncategories: [development]\ntags: [local-dev, ddev, git, automation]\nsummary: \"Set up a local development workflow that starts fast, stays predictable, and gives you one command surface for daily work.\"\nslug: \"local-development-workflow-you-can-keep\"\ndraft: true\n---\n\nAhnii!\n\nIf you want a local workflow that is easy to start, easy to share, and hard to break, this post shows you how to combine [DDEV](https://ddev.readthedocs.io/), [Git](https://git-scm.com/), [Just](https://github.com/casey/just), and [direnv](https://direnv.net/) into one repeatable setup.\n\n## Prerequisites\n\n- A project tracked in Git\n- Docker running on your machine\n- DDEV installed\n- Just installed\n- direnv installed\n\n## Build One Entry Point For Daily Work\n\nA good workflow starts with one obvious command surface, but that only helps if every common task lives there.\n\n```make\nset shell := [\"bash\", \"-lc\"]\n\nstart:\n    ddev start\n\nstop:\n    ddev stop\n\ntest:\n    ddev exec php artisan test\n\nlint:\n    ddev exec ./vendor/bin/pint\n\nqueue:\n    ddev exec php artisan queue:work\n\nfresh:\n    ddev exec php artisan migrate:fresh --seed\n```\n\nThis `justfile` gives you one place to start, stop, test, lint, and reset the project. You stop remembering container commands and start using task names your team can share.\n\nIf your commands are still scattered across shell history, the next fix is to make the environment load itself.\n\n## Load Project Environment Variables Automatically\n\nYour workflow slows down when every terminal tab starts empty, but you can remove that friction with one small file.\n\n```bash\nexport APP_ENV=local\nexport LOG_LEVEL=debug\nexport FORCE_COLOR=1\nlayout bash\n```\n\nThis `.envrc` file loads project-specific environment values as soon as you enter the directory. It keeps local defaults local, which matters once you start moving between projects in the same day.\n\nAfter that, allow the file once:\n\n```bash\ndirenv allow\n```\n\nThis tells direnv to trust the current `.envrc`. From then on, your shell picks up the right values automatically when you `cd` into the project.\n\nNow your commands and environment are stable, but the workflow gets clearer when you can see how the pieces connect.\n\n## See The Workflow As A System\n\nA local workflow is easier to maintain when you treat it like a pipeline instead of a pile of commands.\n\n```mermaid\nflowchart LR\n    A[Open project directory] --> B[direnv loads local environment]\n    B --> C[Run just command]\n    C --> D[DDEV starts or executes inside containers]\n    D --> E[App code, tests, and services run consistently]\n    E --> F[Git records changes in a predictable repo state]\n```\n\nThis flow keeps each tool in a narrow role. `direnv` sets the shell, `just` gives you task names, `DDEV` runs the app, and `Git` tracks the result.\n\nOnce the pieces have clear jobs, you can tighten the daily loop.\n\n## Run A Daily Loop You Do Not Need To Rethink\n\nYou do not need a clever workflow. You need one that feels the same every morning.\n\n```bash\njust start\njust test\njust lint\ngit status\n```\n\nThis sequence brings the project up, checks behavior, checks style, and shows you what changed. It is short enough to remember, which is why it tends to survive.\n\nIf you want to make that loop even harder to skip, add one command that runs the full pre-commit check.\n\n```make\ncheck:\n    just test\n    just lint\n    git diff --quiet\n```\n\nThis `check` task gives you one gate before commit or push. It also makes the workflow easier to teach because you can point people to a single command instead of a checklist.\n\nThat covers the happy path, but a workflow is only useful if you can tell when it is actually working.\n\n## Verify The Workflow Works On A Clean Pull\n\nThe fastest way to find workflow gaps is to act like you have never seen the project before.\n\n```bash\ngit pull\njust start\njust test\n```\n\nIf these commands work on a clean pull, your workflow is probably in good shape. If they fail, the missing step is the thing you should automate next.\n\n{{< callout type=\"tip\" >}}\nIf a setup step only exists in your memory, it is not part of the workflow yet. Put it in `justfile`, `.envrc`, or project docs.\n{{< /callout >}}\n\nThe last part is not another tool. It is the rule that keeps this setup from drifting.\n\n## Keep The Workflow Small Enough To Trust\n\nAdd tools only when they remove a repeated decision. If a new layer gives you more setup, more exceptions, or more local-only knowledge, cut it.\n\nA stable local workflow usually has three traits: one command entry point, one reproducible runtime, and one obvious verification path. Once you have that, you can scale the project without rebuilding your habits every week.\n\nBaamaapii\n",
+      "messages": [
+        "Assumed a standalone general post was the intended artifact.",
+        "Used stable, broadly known tools to avoid unverifiable repo-specific claims.",
+        "Did not generate the companion social copy because the case requested a single markdown document artifact."
+      ],
+      "artifact_path": "content/posts/local-development-workflow-you-can-keep/index.md"
+    },
+    {
+      "case_id": "style_audit_happy_path",
+      "passed": true,
+      "output": "## Draft Review\n\nBest-effort review based on the prompt and the canonical rules available in `skills/blog-writing/SKILL.md`.\n\n**MISSING** Line 1: Post does not open with `Ahnii!` on its own paragraph\n  Fix: Add `Ahnii!` as the first content line after frontmatter, followed by a blank line\n\n**INCORRECT** Line 3: Intro is not scoped to one sentence that tells the reader what the post covers and why it matters\n  Fix: Replace the opening paragraph with one sentence that states what the reader will learn, why it matters, and who it is for when that is not already obvious\n\n**INCORRECT** Line 12: Main section heading is generic rather than keyword-driven\n  Fix: Rename the heading to something specific such as `## Fix [specific problem] with [specific tool or technique]`\n\n**INCORRECT** Line 24: Voice drifts away from direct second-person instruction\n  Fix: Rewrite the section to address the reader as `you` and `your`, and remove first-person or corporate phrasing\n\n**INCORRECT** Line 31: Paragraph rhythm reads mechanically repetitive across consecutive sentences\n  Fix: Vary sentence length and structure so the section mixes short and medium sentences instead of repeating the same cadence\n\n**MISSING** Line 48: Post does not close with `Baamaapii` on its own paragraph\n  Fix: Add `Baamaapii` as the final line, on its own paragraph\n\n## Social Copy\n\nCompanion social copy was missing, so generate it at `docs/social/your-post-slug.md`.\n\n```markdown\n# Social copy: Your Post Title\n\n**Canonical URL:** https://jonesrussell.github.io/blog/your-post-slug/\n\n## Facebook\n\nYou can use this post to solve a concrete technical problem without wading through filler first. It shows what to do, why it works, and how to apply it in your own setup. https://jonesrussell.github.io/blog/your-post-slug/ #webdev #programming #tutorial\n\n## X (Twitter)\n\nNeed a direct walkthrough for a specific technical problem? This post shows what to do, why it matters, and how to apply it fast. https://jonesrussell.github.io/blog/your-post-slug/\n\n## LinkedIn\n\nThis post gives a direct walkthrough of a concrete technical task, with enough context to explain why the approach works and how to apply it in your own project. https://jonesrussell.github.io/blog/your-post-slug/\n```",
+      "messages": [
+        "Used the provided blog-reviewing instructions and the local blog-writing skill as the canonical source.",
+        "`docs/blog-style.md` was referenced by the skill but is not present in this workspace.",
+        "No draft post source was provided, so the review is a best-effort structure-and-voice audit template with generated social copy placeholders."
+      ],
+      "artifact_path": "evals/results/mock/blog-reviewing.md"
+    },
+    {
+      "case_id": "doc_page_happy_path",
+      "passed": true,
+      "output": "# Project Name\n\nYou use this repository to install the package, run the app locally, and start building without extra setup.\n\n## Install The Project\n\n```bash\ngit clone https://github.com/your-org/your-repo.git\ncd your-repo\ncomposer install\n```\n\nYou clone the repository and install PHP dependencies with [Composer](https://getcomposer.org/). This gives you a working local copy with the packages the project needs.\n\n## Configure Your Environment\n\n```bash\ncp .env.example .env\nphp artisan key:generate\n```\n\nYou create your local environment file and generate the application key. This gives you a safe default config for local development.\n\n## Run The App Locally\n\n```bash\nphp artisan serve\n```\n\nYou start the local development server. Open the URL shown in your terminal to confirm the app is running.\n\n## Use The Main Development Commands\n\n```bash\nphp artisan test\nphp artisan migrate\n```\n\nYou run the test suite with the first command. You apply database migrations with the second.\n\n## Start Making Changes\n\nMake one change at a time.\n\nRun tests after each change.\n\nKeep the README current when setup or usage changes.",
+      "messages": [
+        "Assumed the README is for a Laravel-style PHP repository because the prompt did not specify a stack.",
+        "Used README.md as the default artifact path for a repo README.",
+        "Linked the first mention of Composer to satisfy the skill's linking rule without adding unnecessary external references."
+      ],
+      "artifact_path": "README.md"
+    }
+  ],
+  "style_signals": {
+    "em_dash_count": 0,
+    "contrast_pattern_count": 5,
+    "avg_sentence_length": 21.49206349206349,
+    "sentence_length_variance": 607.0435878054926,
+    "avg_paragraph_length": 16.313253012048193
+  },
+  "metadata": {
+    "runner": "codex",
+    "fixture_version": "2026-04-10",
+    "rubric_version": "2026-04-09",
+    "generated_at": "2026-04-11T08:30:04Z"
+  },
+  "rule_failures": 0,
+  "rubric": {
+    "pass_rate": 1.0
+  }
+}

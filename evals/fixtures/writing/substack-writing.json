@@ -1,0 +1,40 @@
+{
+  "skill": "substack-writing",
+  "suite": "writing",
+  "version": "2026-04-11",
+  "hard_rule_checks": [
+    "required_greeting",
+    "required_farewell",
+    "artifact_path_pattern",
+    "em_dash_disallowed"
+  ],
+  "hard_rules": {
+    "required_greeting": {
+      "text": "Ahnii!",
+      "paragraph_position": "first"
+    },
+    "required_farewell": {
+      "text": "Baamaapii",
+      "paragraph_position": "last"
+    },
+    "artifact_path_pattern": {
+      "prefix": "~/brand/",
+      "suffix": ".md"
+    },
+    "em_dash_disallowed": {
+      "character": "—"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "newsletter_happy_path",
+      "prompt": "Draft issue #42 of a personal newsletter about a recent build session.",
+      "expected_artifact": "markdown_document",
+      "rubric_targets": [
+        "voice_fidelity",
+        "structure_compliance",
+        "clarity"
+      ]
+    }
+  ]
+}

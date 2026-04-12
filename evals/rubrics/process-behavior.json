@@ -1,0 +1,25 @@
+{
+  "rubric_id": "process-behavior",
+  "suite": "writing",
+  "version": "2026-04-09",
+  "rule_checks": [
+    "required_greeting",
+    "required_farewell",
+    "artifact_path_pattern",
+    "em_dash_disallowed"
+  ],
+  "hard_rules": {
+    "required_greeting": {
+      "description": "Output starts with the skill's required greeting paragraph."
+    },
+    "required_farewell": {
+      "description": "Output ends with the skill's required farewell paragraph."
+    },
+    "artifact_path_pattern": {
+      "description": "Artifact path must match the skill's expected file layout."
+    },
+    "em_dash_disallowed": {
+      "description": "Skills that prohibit em dashes must not contain the em dash character."
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "skill": "social-media-posts",
+  "suite": "writing",
+  "version": "2026-04-11",
+  "hard_rule_checks": [
+    "artifact_path_pattern"
+  ],
+  "hard_rules": {
+    "artifact_path_pattern": {
+      "prefix": "docs/social/",
+      "suffix": ".md"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "dev_work_post_happy_path",
+      "prompt": "Write social copy promoting a shipped developer workflow improvement.",
+      "expected_artifact": "markdown_document",
+      "rubric_targets": [
+        "voice_fidelity",
+        "structure_compliance",
+        "clarity"
+      ]
+    }
+  ]
+}
