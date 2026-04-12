@@ -4,3 +4,5 @@ __pycache__/
 .vscode/
 evals/results/*
 !evals/results/.gitkeep
+# Account-specific config — populate locally from buffer-channels.sh
+skills/content-pipeline/channels.env
