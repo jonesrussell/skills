@@ -1,19 +1,25 @@
 #!/usr/bin/env bash
-# Post to a single Buffer channel via GraphQL API
-# Usage: ./buffer-post.sh <channel_id> <text> [mode] [platform]
-# mode: shareNow (default), addToQueue, customScheduled
-# platform: facebook, twitter, linkedin (optional, used for platform-specific metadata)
+# Post to a Buffer channel via GraphQL API
+# Usage: ./buffer-post.sh <platform> <text> [mode] [first_comment_url]
+# platform: facebook, twitter, linkedin
+# mode: addToQueue (default), shareNow, customScheduled
+# first_comment_url: URL to post as first comment (linkedin and facebook only; X is manual self-reply)
 # For customScheduled, set DUE_AT env var to ISO8601 datetime
-# Requires: BUFFER_API_KEY environment variable
+# Channel IDs and API key are read from Ansible vault automatically.
 
 set -euo pipefail
 
+VAULT_FILE="$HOME/dev/northcloud-ansible/inventory/group_vars/all/vault.yml"
+VAULT_PASS="$HOME/.ansible-vault-password"
+
+_vault_get() {
+  ansible-vault view "$VAULT_FILE" --vault-password-file "$VAULT_PASS" 2>/dev/null \
+    | grep "^$1:" | sed 's/.*: *"\(.*\)"/\1/'
+}
+
 if [[ -z "${BUFFER_API_KEY:-}" ]]; then
-  # Auto-extract from Ansible vault if available
-  VAULT_FILE="$HOME/dev/northcloud-ansible/inventory/group_vars/all/vault.yml"
-  VAULT_PASS="$HOME/.ansible-vault-password"
   if [[ -f "$VAULT_FILE" && -f "$VAULT_PASS" ]]; then
-    BUFFER_API_KEY=$(ansible-vault view "$VAULT_FILE" --vault-password-file "$VAULT_PASS" 2>/dev/null | grep vault_buffer_api_key | sed 's/.*: *"\(.*\)"/\1/' || true)
+    BUFFER_API_KEY=$(_vault_get vault_buffer_api_key)
     export BUFFER_API_KEY
   fi
   if [[ -z "${BUFFER_API_KEY:-}" ]]; then
@@ -22,28 +28,50 @@ if [[ -z "${BUFFER_API_KEY:-}" ]]; then
   fi
 fi
 
-CHANNEL_ID="${1:?Usage: buffer-post.sh <channel_id> <text> [mode] [platform]}"
-TEXT="${2:?Usage: buffer-post.sh <channel_id> <text> [mode] [platform]}"
+PLATFORM="${1:?Usage: buffer-post.sh <platform> <text> [mode] [first_comment_url]}"
+TEXT="${2:?Usage: buffer-post.sh <platform> <text> [mode] [first_comment_url]}"
 MODE="${3:-addToQueue}"
-PLATFORM="${4:-}"
+FIRST_COMMENT_URL="${4:-}"
+
+# Resolve channel ID from vault
+case "$PLATFORM" in
+  facebook)  CHANNEL_ID=$(_vault_get vault_buffer_channel_facebook) ;;
+  twitter)   CHANNEL_ID=$(_vault_get vault_buffer_channel_twitter) ;;
+  linkedin)  CHANNEL_ID=$(_vault_get vault_buffer_channel_linkedin) ;;
+  *)
+    echo "Error: unknown platform '$PLATFORM'. Use: facebook, twitter, linkedin" >&2
+    exit 1
+    ;;
+esac
+
+if [[ -z "$CHANNEL_ID" ]]; then
+  echo "Error: no channel ID found in vault for platform '$PLATFORM'" >&2
+  exit 1
+fi
 
 # Build the GraphQL mutation using Python for safe JSON encoding
 RESPONSE=$(python3 -c "
-import json, subprocess, sys, os
+import json, subprocess, sys
 
 text = sys.argv[1]
 channel_id = sys.argv[2]
 mode = sys.argv[3]
-due_at = sys.argv[4] if len(sys.argv) > 4 else ''
-platform = sys.argv[5] if len(sys.argv) > 5 else ''
-api_key = sys.argv[6]
+platform = sys.argv[4]
+due_at = sys.argv[5] if len(sys.argv) > 5 else ''
+first_comment_url = sys.argv[6] if len(sys.argv) > 6 else ''
+api_key = sys.argv[7]
 
 due_at_field = f'dueAt: \"{due_at}\"' if mode == 'customScheduled' and due_at else ''
 
-# Platform-specific metadata
+# Platform-specific metadata (type + optional firstComment)
 metadata_field = ''
 if platform == 'facebook':
-    metadata_field = 'metadata: { facebook: { type: post } }'
+    if first_comment_url:
+        metadata_field = f'metadata: {{ facebook: {{ type: post firstComment: {json.dumps(first_comment_url)} }} }}'
+    else:
+        metadata_field = 'metadata: { facebook: { type: post } }'
+elif platform == 'linkedin' and first_comment_url:
+    metadata_field = f'metadata: {{ linkedin: {{ firstComment: {json.dumps(first_comment_url)} }} }}'
 
 query = f'''mutation {{
   createPost(input: {{
@@ -80,7 +108,7 @@ result = subprocess.run(
     capture_output=True, text=True
 )
 print(result.stdout)
-" "$TEXT" "$CHANNEL_ID" "$MODE" "${DUE_AT:-}" "$PLATFORM" "$BUFFER_API_KEY")
+" "$TEXT" "$CHANNEL_ID" "$MODE" "$PLATFORM" "${DUE_AT:-}" "$FIRST_COMMENT_URL" "$BUFFER_API_KEY")
 
 # Parse response: union type — PostActionSuccess has .post; all errors have .message
 echo "$RESPONSE" | python3 -c "
@@ -92,7 +120,6 @@ except Exception as e:
     print(f'Error parsing API response: {e}', file=sys.stderr)
     sys.exit(1)
 
-# Top-level GraphQL errors (schema/network level)
 top_errors = data.get('errors', [])
 if top_errors:
     for e in top_errors:
@@ -101,7 +128,6 @@ if top_errors:
 
 result = data.get('data', {}).get('createPost', {})
 
-# Union error types all have a 'message' field, no 'post'
 if 'message' in result:
     print(f'Error posting to Buffer: {result[\"message\"]}', file=sys.stderr)
     sys.exit(1)
