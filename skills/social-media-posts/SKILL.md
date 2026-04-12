@@ -18,7 +18,8 @@ Generate ready-to-paste social media copy for three platforms: Facebook, X, Link
 | Tone | Direct, technical, conversational. Not corporate. Not salesy. |
 | Person | Second person when addressing readers ("your AI assistant", "you develop"). First person when sharing results ("I built", "first audit"). |
 | Concise | Short sentences. One idea per sentence. No filler. |
-| Em dashes | Use sparingly. Prefer periods, colons, or commas. |
+| Em dashes | Never. Social platforms are not markdown editors. Use periods, colons, or commas instead. |
+| Markdown formatting | Never use backticks, bold, or other markdown syntax. It renders as literal characters on all three platforms. Write plain text only. |
 | Emoji | None. Let the content speak. |
 | Real data | When audit results, metrics, or concrete outcomes exist, include them. Specificity beats vague claims. |
 
@@ -139,5 +140,7 @@ Reference URL: https://...
 | Missing URL or reference | Every platform needs a link — in the first comment/reply. |
 | Corporate voice ("leverage", "synergy") | Write like you're explaining it to a peer. |
 | Emoji decoration | No emoji. The content is the signal. |
+| Em dashes | Never. Rewrite the sentence with a period, colon, or comma instead. |
+| Markdown in copy | No backticks, bold, or formatting. It renders as literal characters on Facebook, X, and LinkedIn. |
 | Threading on X | Single post wins for reach. Thread only for 4+ genuinely connected points. |
 | Dev post with no GitHub link | Always include a commit, PR, file, or issue link. |
