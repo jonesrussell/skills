@@ -16,7 +16,7 @@
     },
     {
       "name": "code-quality-skills",
-      "description": "Code quality, architecture, and security review skills: cleaning-up-codebases, codified-context, monorepo-cleanup, security-review, updating-codified-context",
+      "description": "Code quality, architecture, and security review skills: ai-repository-audit, cleaning-up-codebases, codified-context, monorepo-cleanup, security-review, updating-codified-context",
       "source": "./"
     },
     {

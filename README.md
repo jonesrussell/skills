@@ -115,6 +115,7 @@ Blog and review writing skills.
 
 ### code-quality-skills
 Code quality, architecture, and security review skills.
+- [`ai-repository-audit`](skills/ai-repository-audit/SKILL.md) — Audit repository drift against an accepted baseline, with evidence and bounded recommendations
 - `cleaning-up-codebases` — Review codebases for cruft, dead code, anti-patterns
 - `codified-context` — Apply three-tier codified context architecture
 - `monorepo-cleanup` — Review monorepos for cross-service issues
@@ -146,6 +147,24 @@ Project planning and orchestration.
 MyMe and North-Cloud skills live in their own repos:
 - **myme-skills** — [jonesrussell/myme](https://github.com/jonesrussell/myme) (Rust/Qt desktop app)
 - **north-cloud-skills** — [jonesrussell/north-cloud](https://github.com/jonesrussell/north-cloud) (Go microservices)
+
+## Repository Audits
+
+Use [`ai-repository-audit`](skills/ai-repository-audit/SKILL.md) for repeat health checks or post-cleanup reviews against an accepted baseline. It checks ownership, retirement, documentation, and safeguards, then reports evidence and bounded recommendations. Repairs require an explicit request.
+
+For an agent with the skill available:
+
+```text
+Use $ai-repository-audit against this project, using the latest accepted cleanup as the baseline. Focus on ownership and retirement.
+```
+
+Or provide a known baseline commit and narrower paths:
+
+```text
+Use $ai-repository-audit with baseline <commit>, scoped to src/ and tests/. Report findings without making repairs.
+```
+
+The report identifies the baseline and current checkout, classifies guard coverage and execution results, and distinguishes new drift from inherited debt and missing evidence. If the accepted baseline is unclear, it states the limits of the comparison.
 
 ## Creating Skills
 
