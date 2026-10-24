@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1 - 2026-10-24
+
+- Keep installer backups and receipts outside the directory agents scan for skills. Refuse installation when historical state needs relocation, preserving both current and backed-up copies.
+
 ## 2.0.0 - 2026-10-24
 
 - Curate five maintained tutorial, planning and repository skills.
