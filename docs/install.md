@@ -41,7 +41,9 @@ python scripts/manage_skills.py install laravel-sdd-bootstrap --target codex --u
 python scripts/manage_skills.py install laravel-sdd-bootstrap --target codex --update
 ```
 
-`--update` replaces only an unchanged copy managed by this installer. A modified or unmanaged copy requires inspection and explicit `--replace`; replacement keeps the previous directory under the destination's `.jonesrussell-skills/backups/` directory. The tool prints its path. Receipts record content hashes, not credentials. Restoring a backup is manual: preserve the current copy and copy the selected backup to the original skill location.
+`--update` replaces only an unchanged copy managed by this installer. A modified or unmanaged copy requires inspection and explicit `--replace`; replacement keeps the previous directory in a sibling state directory, outside skill discovery. For `~/.agents/skills`, backups live under `~/.agents/.skills-jonesrussell-state/backups/`. The tool prints the exact path. Receipts record content hashes, not credentials. Restoring a backup is manual: preserve the current copy and copy the selected backup to the original skill location.
+
+If an earlier installer created `.jonesrussell-skills` inside your skills root, current installation stops with the old and new state paths. Preserve that directory and move it to the printed sibling state location only after checking that location is unused. If both exist, reconcile their receipts and backups manually; never overwrite one with the other.
 
 Identical content is left untouched. An identical pre-existing unmanaged copy stays unmanaged; a later change still requires explicit replacement. Linked destinations, symlinks and junctions are refused. Existing symlink installations require manual handling, with their target preserved.
 

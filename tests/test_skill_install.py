@@ -78,7 +78,7 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(code, 1, output)
         self.assertFalse((self.destination / "one").exists())
         self.assertEqual(conflict.read_text(), "Local work")
-        self.assertFalse((self.destination / install.STATE).exists())
+        self.assertFalse(install.state_directory(self.destination).exists())
 
     def test_update_preserves_backup_and_requires_unchanged_managed_content(self):
         self.assertEqual(self.command("one")[0], 0)
@@ -88,9 +88,11 @@ class InstallTests(unittest.TestCase):
         code, output = self.command("one", "--update")
         self.assertEqual(code, 0, output)
         self.assertEqual((self.destination / "one/references/notes.md").read_text(), "Upstream update")
-        backups = list((self.destination / install.STATE / "backups").glob("*/one/references/notes.md"))
+        backups = list((install.state_directory(self.destination) / "backups").glob("*/one/references/notes.md"))
         self.assertEqual(len(backups), 1)
         self.assertEqual(backups[0].read_text(), "Supporting content\n")
+        self.assertEqual(list(self.destination.rglob("SKILL.md")), [self.destination / "one/SKILL.md"])
+        self.assertNotIn(self.destination, backups[0].parents)
         (self.destination / "one/references/notes.md").write_text("New local edit", encoding="utf-8")
         self.assertEqual(self.command("one", "--update")[0], 1)
 
@@ -100,7 +102,7 @@ class InstallTests(unittest.TestCase):
         local.write_text("My local version", encoding="utf-8")
         code, output = self.command("one", "--replace")
         self.assertEqual(code, 0, output)
-        backup = next((self.destination / install.STATE / "backups").glob("*/one/SKILL.md"))
+        backup = next((install.state_directory(self.destination) / "backups").glob("*/one/SKILL.md"))
         self.assertEqual(backup.read_text(), "My local version")
 
     def test_source_and_destination_edits_invalidate_preflight(self):
@@ -203,6 +205,16 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("Retired skill", output)
         self.assertFalse(self.destination.exists())
+
+    def test_historical_state_requires_preserving_manual_relocation(self):
+        legacy = self.destination / ".jonesrussell-skills/backups/one/SKILL.md"
+        legacy.parent.mkdir(parents=True)
+        legacy.write_text("Old backed-up skill", encoding="utf-8")
+        code, output = self.command("one", "--replace")
+        self.assertEqual(code, 1)
+        self.assertIn("Historical installer state", output)
+        self.assertEqual(legacy.read_text(), "Old backed-up skill")
+        self.assertFalse((self.destination / "one").exists())
 
     def test_catalog_rejects_broken_evaluation_contract_and_escape(self):
         self.data["skills"]["one"]["evals"] = "../outside.json"

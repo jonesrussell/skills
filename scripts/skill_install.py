@@ -20,7 +20,6 @@ except ImportError:
     from catalog import ROOT, load_catalog
 
 TARGETS = {"codex": ".agents/skills", "codex-legacy": ".codex/skills", "claude": ".claude/skills", "cursor": ".cursor/skills"}
-STATE = ".jonesrussell-skills"
 
 
 def is_link(path: Path) -> bool:
@@ -95,16 +94,24 @@ class Plan:
     action: str
 
 
+def state_directory(root: Path) -> Path:
+    # Backups contain SKILL.md. Keep them outside the host's discovery directory.
+    return root.with_name(f".{root.name}-jonesrussell-state")
+
+
 def receipt_path(root: Path, name: str) -> Path:
-    return root / STATE / "receipts" / f"{name}.json"
+    return state_directory(root) / "receipts" / f"{name}.json"
 
 
 def plan_install(name: str, source: Path, root: Path, *, update: bool = False, replace: bool = False) -> Plan:
     root = safe_directory(root)
+    old_state = root / ".jonesrussell-skills"
+    if old_state.exists() or is_link(old_state):
+        raise ValueError(f"Historical installer state is inside skill discovery: {old_state}. Preserve and move it to {state_directory(root)} before installing; do not overwrite an existing state directory.")
     destination = root / name
     safe_directory(destination)
-    safe_directory(root / STATE / "receipts")
-    safe_directory(root / STATE / "backups")
+    safe_directory(state_directory(root) / "receipts")
+    safe_directory(state_directory(root) / "backups")
     source = safe_directory(source)
     if destination == source or source in destination.parents or destination in source.parents:
         raise ValueError("The install destination must be separate from the source skill")
@@ -150,7 +157,7 @@ def apply_plan(plan: Plan) -> str:
         return f"UNCHANGED {plan.name}"
     # Recheck immediately before mutation so a stale plan cannot replace newer edits.
     safe_directory(plan.destination)
-    state_root = safe_directory(plan.root / STATE)
+    state_root = safe_directory(state_directory(plan.root))
     safe_directory(state_root / "receipts")
     backups = safe_directory(state_root / "backups")
     current = inventory(plan.destination) if plan.destination.exists() else None
