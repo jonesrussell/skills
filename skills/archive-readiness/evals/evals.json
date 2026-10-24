@@ -1,0 +1,26 @@
+{
+  "skill_name": "archive-readiness",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Can I archive this chat? The requested report is saved, but a deployment started in this task is still running.",
+      "should_trigger": true,
+      "expected_output": "Report not ready because the task-owned deployment remains unresolved; use available read-only state checks without stopping it or archiving the chat.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "We finished this task. Check that nothing is dangling before I move on. A separate future issue is intentionally parked with an owner.",
+      "should_trigger": true,
+      "expected_output": "Check only current-scope completion and active work. Treat the owned parked issue as an intentional residual, not automatic new work. Create no archive file.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Create a zip archive of this project source directory.",
+      "should_trigger": false,
+      "expected_output": "Treat archive as the explicit file operation, not as a chat-readiness check.",
+      "files": []
+    }
+  ]
+}

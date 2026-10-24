@@ -1,0 +1,25 @@
+name: Skill catalog and installer
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.11'
+      - run: python scripts/catalog.py check
+      - run: python -m unittest discover -s tests
+      - run: python skills/project-kickoff/scripts/test_scaffold.py
+      - name: Preview tutorial install without touching agent directories
+        run: python scripts/manage_skills.py install --bundle tutorial-skills --dest .install-preview --dry-run

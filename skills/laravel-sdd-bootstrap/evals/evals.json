@@ -1,0 +1,26 @@
+{
+  "skill_name": "laravel-sdd-bootstrap",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Prepare a Laravel feedback-form recording starter on Windows. I have PHP and Composer. Leave the form, validation and database saving for me to build on camera.",
+      "should_trigger": true,
+      "expected_output": "Verify PHP/Composer compatibility, use standalone runtime with Blade and SQLite, prepare only the agreed foundation, and report the unfinished lesson work. Do not select Herd or implement the feedback feature.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Review this existing Laravel app for my next tutorial. It already uses PostgreSQL and Vite, and I want to keep both.",
+      "should_trigger": true,
+      "expected_output": "Inspect the existing application and preserve PostgreSQL and Vite. Recommend or perform only requested preparation; do not bootstrap a second app or migrate it to default SQLite.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "In my existing Laravel application, fix the feedback controller failing this validation test. Do not change the development setup.",
+      "should_trigger": false,
+      "expected_output": "Handle the focused bug fix without applying a new foundation or recording workflow.",
+      "files": []
+    }
+  ]
+}

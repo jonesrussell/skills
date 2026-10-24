@@ -1,5 +1,6 @@
 ---
 name: laravel-sdd-bootstrap
+license: MIT
 description: Prepare or review a Laravel foundation and specify the first feature. Defaults to standalone PHP and Composer, Artisan's local server, Blade and SQLite. Supports recording starters, existing-project orientation and scoped application setup.
 ---
 

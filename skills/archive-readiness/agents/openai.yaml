@@ -1,0 +1,4 @@
+interface:
+  display_name: "Archive Readiness"
+  short_description: "Check whether a finished task is ready to archive"
+  default_prompt: "Use $archive-readiness to check whether this task is ready to archive and identify any unfinished work."

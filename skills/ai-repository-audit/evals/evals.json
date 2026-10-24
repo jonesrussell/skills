@@ -1,0 +1,26 @@
+{
+  "skill_name": "ai-repository-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit drift since the accepted cleanup at the supplied baseline commit. The checkout also has uncommitted changes. Report findings only.",
+      "should_trigger": true,
+      "expected_output": "Verify baseline existence and ancestry, separate committed and dirty changes, trace owners and guards, and report evidence with coverage limits. Do not repair files or substitute main for the baseline.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Check whether ownership and retirement still hold, but there is no accepted baseline recorded in this fixture repository.",
+      "should_trigger": true,
+      "expected_output": "State that a comparative baseline is missing or provisional; report current evidence without asserting new drift or claiming the repository is clean.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Write a migration for adding a feedback table to this Laravel app.",
+      "should_trigger": false,
+      "expected_output": "Implement the requested migration within project conventions without starting a repository-wide audit.",
+      "files": []
+    }
+  ]
+}

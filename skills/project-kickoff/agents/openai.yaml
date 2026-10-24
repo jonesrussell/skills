@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Kickoff"
+  short_description: "Start projects with a brief, backlog and agent guidance"
+  default_prompt: "Use $project-kickoff to set up this project with reusable guidance and a concrete first slice."
