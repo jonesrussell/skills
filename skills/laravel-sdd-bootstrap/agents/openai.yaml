@@ -1,0 +1,4 @@
+interface:
+  display_name: "Laravel SDD Bootstrap"
+  short_description: "Standalone Laravel setup and recording starters"
+  default_prompt: "Use $laravel-sdd-bootstrap with this brief to prepare and verify the Laravel foundation, leaving the first feature for me to build."

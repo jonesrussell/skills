@@ -1,10 +1,24 @@
 # Skills
 
-Personal [Agent Skills](https://agentskills.io) for use with Claude Code.
+Personal [Agent Skills](https://agentskills.io) for coding, content and workflow tasks across compatible agents.
+
+## Tutorial starting points
+
+- [Laravel SDD Bootstrap](skills/laravel-sdd-bootstrap/SKILL.md): prepare a Laravel foundation with standalone PHP/Composer, `php artisan serve`, Blade and SQLite. Herd and richer stacks are explicit options. Recording mode leaves the feature for you to build on camera.
+
+Example request with the skill installed:
+
+```text
+Use $laravel-sdd-bootstrap to prepare a Laravel project for a feedback-form tutorial. Set up the runtime, database and simple page styling. Leave the form, validation and saving logic for me to build on camera.
+```
+
+To install only this skill, copy the entire `skills/laravel-sdd-bootstrap` folder, including its references and agent metadata, into your agent's personal skills directory. For Codex the default is `~/.codex/skills`; for Claude Code it is `~/.claude/skills`. Review an existing copy before replacing it. The repository-wide sync below installs the full collection.
+
+Tutorial descriptions can link directly to the skill above. For an episode tied to a particular revision, use GitHub's commit permalink so later edits do not change that lesson's instructions.
 
 ## Canonical Repo
 
-`~/dev/skills` is the source of truth for custom skills across agents.
+This repository's `skills/` directory is the source of truth for custom skills across agents, wherever you clone it.
 
 - Author skills only in `skills/*`.
 - Treat Claude/Codex/Cursor install directories as mirrors.

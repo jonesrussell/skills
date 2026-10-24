@@ -472,7 +472,8 @@ class EvalResultSchemaTest(unittest.TestCase):
 
 class RubricSchemaTest(unittest.TestCase):
     def test_quality_rubric_includes_style_signal_criteria(self) -> None:
-        payload = json.loads(Path("/home/jones/dev/skills/evals/rubrics/writing-quality.json").read_text())
+        rubric_path = Path(__file__).resolve().parents[1] / "evals/rubrics/writing-quality.json"
+        payload = json.loads(rubric_path.read_text(encoding="utf-8"))
         criterion_ids = {criterion["criterion_id"] for criterion in payload["criteria"]}
 
         self.assertTrue(
