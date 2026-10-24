@@ -1,0 +1,377 @@
+{
+  "schema_version": 1,
+  "version": "2.0.0",
+  "skills": {
+    "ai-repository-audit": {
+      "title": "AI repository audit",
+      "summary": "Compare a repository with its accepted baseline and report evidence-backed drift.",
+      "category": "repository",
+      "status": "maintained",
+      "reviewed_on": "2026-10-24",
+      "review_note": "Retains the October 21 skill from 8e31ef1. Baseline, evidence and read-only boundaries reviewed. No new model benchmark or certification of a target repository is claimed.",
+      "requirements": "Access to the scoped repository, Git history and its accepted baseline. Run only project checks already available and authorized.",
+      "evals": "evals/evals.json"
+    },
+    "archive-readiness": {
+      "title": "Task archive readiness",
+      "summary": "Check whether requested work is complete and identify unfinished items before archiving a chat.",
+      "category": "repository",
+      "status": "maintained",
+      "reviewed_on": "2026-10-24",
+      "review_note": "Imported from the maintainer local skill. Read-only current-task scope reviewed. No new model benchmark or product-specific integration test claimed.",
+      "requirements": "Current task context and read-only tools for the systems already in scope. No mandatory external service.",
+      "evals": "evals/evals.json"
+    },
+    "laravel-sdd-bootstrap": {
+      "title": "Laravel recording starter",
+      "summary": "Prepare standalone PHP/Composer, Blade and SQLite, leaving the teaching feature for the recording.",
+      "category": "tutorial",
+      "status": "maintained",
+      "reviewed_on": "2026-10-24",
+      "review_note": "Derived from an actual native Windows Laravel recording setup using PHP 8.5.5, Composer 2.9.5 and Laravel 13.38.0. Starter tests, formatting, migrations and HTTP/assets were checked. The lesson feature was intentionally unbuilt. Other hosts and model comparisons are not benchmarked.",
+      "requirements": "PHP and Composer compatible with the selected Laravel release. Browser and editor are optional. No Herd, Node, Docker or MCP requirement for a plain Blade/public-CSS starter.",
+      "evals": "evals/evals.json"
+    },
+    "project-kickoff": {
+      "title": "Project kickoff",
+      "summary": "Create a portable brief, plan, backlog, decisions and agent guidance without overwriting a project.",
+      "category": "tutorial",
+      "status": "maintained",
+      "reviewed_on": "2026-10-24",
+      "review_note": "Imported from the maintainer local skill updated October 23. Templates and create-only helper reviewed; helper behavior tests are included in CI. Model trigger and output comparisons have not been run.",
+      "requirements": "Filesystem access; Python 3.11+ only when using the bundled scaffold helper. No network or service account required.",
+      "evals": "evals/evals.json"
+    },
+    "sdd-stage-planner": {
+      "title": "Plan the next build stage",
+      "summary": "Refine the next feature and its file plan before implementation, with a readable planning companion.",
+      "category": "tutorial",
+      "status": "maintained",
+      "reviewed_on": "2026-10-24",
+      "review_note": "Imported from the maintainer local skill. Private/example-specific wording removed; instruction and resource review completed. No fresh cross-model or client-rendering benchmark claimed.",
+      "requirements": "An existing project with source and planning context. Browser inspection is useful for a visual planner; no required MCP service.",
+      "evals": "evals/evals.json"
+    }
+  },
+  "bundles": {
+    "tutorial-skills": {
+      "status": "maintained",
+      "description": "Laravel recording setup, project kickoff and next-stage planning.",
+      "skills": [
+        "laravel-sdd-bootstrap",
+        "project-kickoff",
+        "sdd-stage-planner"
+      ]
+    },
+    "repository-skills": {
+      "status": "maintained",
+      "description": "Repository drift review and task closeout.",
+      "skills": [
+        "ai-repository-audit",
+        "archive-readiness"
+      ]
+    }
+  },
+  "retired": {
+    "blog-reviewing": {
+      "disposition": "Retire historical writing workflow",
+      "reason": "Personal publication or voice conventions should follow their current owning project; this historical version is not qualified for public tutorial use.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "blog-writing": {
+      "disposition": "Retire historical writing workflow",
+      "reason": "Personal publication or voice conventions should follow their current owning project; this historical version is not qualified for public tutorial use.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "brain": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "brain-monitor": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "capture-meeting": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "changelog": {
+      "disposition": "Project-owned candidate",
+      "reason": "Release workflow assumes scripts/release.sh, which this skill does not ship; use the target project release procedure.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "claudriel-cli": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "claudriel-planning": {
+      "disposition": "Project-owned candidate",
+      "reason": "Fixed project architecture or operational assumptions belong in the owning project; current behavior is not qualified here.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "cleaning-up-codebases": {
+      "disposition": "Remove broad checklist",
+      "reason": "Generic cleanup workflow overlaps repository-specific standards; retain the evidence-oriented audit skill without silently authorizing cleanup.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "client-health": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "codified-context": {
+      "disposition": "Remove universal prescription",
+      "reason": "Imposes a three-tier architecture and MCP retrieval on arbitrary repositories; use project-specific context and demonstrated needs.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "content-curate": {
+      "disposition": "Publisher-owned",
+      "reason": "Hard-coded blog schema paths and historical queue mutation workflow; review in the current publisher before reuse.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "content-mine": {
+      "disposition": "Publisher-owned",
+      "reason": "Hard-coded blog paths and historical queue/mining assumptions; review in the current publisher before any reuse.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "content-pipeline": {
+      "disposition": "Publisher-owned",
+      "reason": "Missing queue-status helper and superseded vault-based scripts; the blog repository owns current queue and delivery behavior.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "content-produce": {
+      "disposition": "Publisher-owned",
+      "reason": "Hard-coded Linux checkout and historical publication flow; current blog runbooks own generation and delivery.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "copilot-claudriel": {
+      "disposition": "Project-owned candidate",
+      "reason": "Fixed project architecture or operational assumptions belong in the owning project; current behavior is not qualified here.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "databases": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "deep-context": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "diagnose": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "documenting-session-findings": {
+      "disposition": "Remove automatic scope expansion",
+      "reason": "Automatically creates issues, modifies guidance and commits after sessions; capture requested findings using the project current workflow.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "draft-reply": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "feedback": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "file-document": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "film-review": {
+      "disposition": "Retire historical writing workflow",
+      "reason": "Personal publication or voice conventions should follow their current owning project; this historical version is not qualified for public tutorial use.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "financial-snapshot": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "fix-duplicates": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "follow-up-draft": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "generating-favicons": {
+      "disposition": "Remove until demonstrated",
+      "reason": "Small generic image-generation recipe; no tested helper or demonstrated advantage over existing tools for this collection.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "generating-og-images": {
+      "disposition": "Rebuild only with a concrete consumer",
+      "reason": "Describes a template and renderer without shipping those resources; no verified tutorial use case in this collection.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "growth-check": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "inbox-check": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "ingest-sources": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "laravel-to-waaseyaa": {
+      "disposition": "Project-owned candidate",
+      "reason": "Fixed project architecture or operational assumptions belong in the owning project; current behavior is not qualified here.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "map-connections": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "meditate": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "meeting-prep": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "memory-audit": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "memory-health": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "minoo-planning": {
+      "disposition": "Project-owned candidate",
+      "reason": "Fixed project architecture or operational assumptions belong in the owning project; current behavior is not qualified here.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "monorepo-cleanup": {
+      "disposition": "Remove broad checklist",
+      "reason": "Broad cross-service cleanup policy needs project-specific ownership and test boundaries; not a reviewed tutorial workflow.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "morning-brief": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "new-person": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "new-workspace": {
+      "disposition": "Superseded",
+      "reason": "Assumes unshipped workspace/dashboard templates. Use the maintained project-kickoff skill and its bundled resources.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "optimizing-responsive-images": {
+      "disposition": "Remove until demonstrated",
+      "reason": "Fixed image variants and command recipes need a real layout and tested asset pipeline before packaging as a general skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "pipeline-review": {
+      "disposition": "Remove until demonstrated",
+      "reason": "A generic checklist or specialized convention without current demonstrated value in the supported tutorial collection; reconsider only from a concrete workflow.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "research": {
+      "disposition": "Remove catchall workflow",
+      "reason": "Broad research trigger plus historical tool/provider and personal filing assumptions; rebuild only for a specific evidenced research outcome.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "security-review": {
+      "disposition": "Remove broad checklist",
+      "reason": "Generic audit procedure lacks a maintained language/framework scope and validation evidence; use a maintained security workflow appropriate to the project.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "session-to-blog": {
+      "disposition": "Retire historical writing workflow",
+      "reason": "Personal publication or voice conventions should follow their current owning project; this historical version is not qualified for public tutorial use.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "ship-pr": {
+      "disposition": "Remove implicit publication flow",
+      "reason": "Review, merge and remote branch deletion are combined into a prescriptive pipeline; use the requested repository workflow and existing authorization.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "social-media-posts": {
+      "disposition": "Replace from current evidence",
+      "reason": "Uncited numerical reach claims, blanket link-in-comment rules and exclusion of Bluesky conflict with the current publishing contract.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "spec-observability-wiring": {
+      "disposition": "Project-owned candidate",
+      "reason": "Assumes a pre-existing drift detector with a specific command contract; belongs beside its actual producer and CI consumers.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "substack-writing": {
+      "disposition": "Retire historical writing workflow",
+      "reason": "Personal publication or voice conventions should follow their current owning project; this historical version is not qualified for public tutorial use.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "summarize-doc": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "technical-writing": {
+      "disposition": "Retire historical writing workflow",
+      "reason": "Personal publication or voice conventions should follow their current owning project; this historical version is not qualified for public tutorial use.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "triage-issues": {
+      "disposition": "Remove arbitrary policy",
+      "reason": "Fixed age, milestone and keyword thresholds are not universal issue-quality rules; target repository policy should own triage.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "updating-codified-context": {
+      "disposition": "Remove architecture coupling",
+      "reason": "Requires the retired codified-context architecture and its unshipped drift tooling.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "waaseyaa-planning": {
+      "disposition": "Project-owned candidate",
+      "reason": "Fixed project architecture or operational assumptions belong in the owning project; current behavior is not qualified here.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "waaseyaa-site-deploy": {
+      "disposition": "Project-owned candidate",
+      "reason": "Fixed project architecture or operational assumptions belong in the owning project; current behavior is not qualified here.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "weekly-review": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    },
+    "what-am-i-missing": {
+      "disposition": "Remove personal integration",
+      "reason": "Depends on Claudia memory, private workspace conventions or a personal assistant workflow; not a self-contained tutorial skill.",
+      "revision": "c65924b9c8e0fbdf3a5a738106cad244c2a4630d"
+    }
+  }
+}

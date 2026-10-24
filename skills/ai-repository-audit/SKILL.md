@@ -1,5 +1,6 @@
 ---
 name: ai-repository-audit
+license: MIT
 description: Audit any AI/code repository for drift from accepted structure, ownership, standards and preventive guards. Use for repeat health checks, post-cleanup reviews, or assessing whether ownership, retirement, documentation and safeguards still hold. Report findings and bounded remediation only; do not authorize or perform repairs unless explicitly requested.
 ---
 

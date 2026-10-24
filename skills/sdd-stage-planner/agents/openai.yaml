@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDD Stage Planner"
+  short_description: "Refine one MVP stage through conversation and a planner"
+  default_prompt: "Use $sdd-stage-planner to refine our current MVP stage, maintain its readable sidecar planner and propose the PR file structure before product code."

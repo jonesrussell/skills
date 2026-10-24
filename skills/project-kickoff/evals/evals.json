@@ -1,0 +1,26 @@
+{
+  "skill_name": "project-kickoff",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Set up a working folder for a small documentation project with a brief, next steps and a backlog. The destination is an empty temporary directory.",
+      "should_trigger": true,
+      "expected_output": "Create a small useful project scaffold with concrete purpose and acceptance criteria. Use the helper if appropriate and report next work without claiming the project itself is done.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Revive this project. It already has an AGENTS.md and a roadmap with agreed decisions. Give it a useful current plan while preserving those decisions.",
+      "should_trigger": true,
+      "expected_output": "Read existing documents, preserve content and agreed decisions, and adapt the plan without replacing files with templates or creating a second task tracker.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Change the current project README command from npm start to npm run dev.",
+      "should_trigger": false,
+      "expected_output": "Make the one requested correction without scaffolding new planning documents.",
+      "files": []
+    }
+  ]
+}

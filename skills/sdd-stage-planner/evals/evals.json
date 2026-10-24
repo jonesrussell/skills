@@ -1,0 +1,26 @@
+{
+  "skill_name": "sdd-stage-planner",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We have a working foundation. Help me plan the first private create-and-view feature and show the proposed PR file tree. We are discussing scope, not implementing it yet.",
+      "should_trigger": true,
+      "expected_output": "Read existing code and plans, describe the bounded first slice and observable acceptance, maintain a readable offline planner where requested, and label file changes as proposed. Do not implement the feature.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Update our existing stage planner: authentication is already done, but uploading is deferred. The next slice is text-only publishing.",
+      "should_trigger": true,
+      "expected_output": "Preserve the existing foundation, update scope and proposed files consistently, retain deferred uploading as a boundary, and distinguish verified authentication from planned publishing.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Fix this typo in the footer of the app.",
+      "should_trigger": false,
+      "expected_output": "Apply the small edit without creating a stage planner or specification workflow.",
+      "files": []
+    }
+  ]
+}

@@ -2,7 +2,9 @@
 __pycache__/
 .idea/
 .vscode/
-evals/results/*
-!evals/results/.gitkeep
-# Account-specific config — populate locally from buffer-channels.sh
+.install-preview/
+work/
+eval-results/
+# Preserve exclusions for local files left behind by historical checkouts.
+evals/results/
 skills/content-pipeline/channels.env
