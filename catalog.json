@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "version": "2.0.1",
+  "version": "2.1.0",
   "skills": {
     "ai-repository-audit": {
       "title": "AI repository audit",
       "summary": "Compare a repository with its accepted baseline and report evidence-backed drift.",
       "category": "repository",
       "status": "maintained",
-      "reviewed_on": "2026-10-24",
-      "review_note": "Retains the October 21 skill from 8e31ef1. Baseline, evidence and read-only boundaries reviewed. No new model benchmark or certification of a target repository is claimed.",
+      "reviewed_on": "2026-11-09",
+      "review_note": "Retains the October 21 skill from 8e31ef1. Baseline, evidence and read-only boundaries reviewed. November 9 adds a Laravel profile; its eval case is unexecuted. No new model benchmark or certification of a target repository is claimed.",
       "requirements": "Access to the scoped repository, Git history and its accepted baseline. Run only project checks already available and authorized.",
       "evals": "evals/evals.json"
     },

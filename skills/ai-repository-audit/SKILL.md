@@ -31,6 +31,8 @@ Group changes by **responsibility** (not just file extension) using git history 
 
 ## 2. Inspect standards and enforcement
 
+Check for a framework profile before building criteria. If the repository has an `artisan` file or a `composer.json` that requires `laravel/framework`, read [laravel.md](references/laravel.md) for where Laravel standards live, default guard-matrix rows, drift checks, probes and verification order. A profile adds defaults; the project's own documented rules still win.
+
 Read the applicable owning specs/ADRs and the current implementation **before** alleging a violation. Use the project’s documented ownership, retirement, documentation-governance, and integration-review rules as the criteria.
 
 Review these dimensions wherever they intersect the scope:

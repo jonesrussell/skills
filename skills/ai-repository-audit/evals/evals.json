@@ -21,6 +21,13 @@
       "should_trigger": false,
       "expected_output": "Implement the requested migration within project conventions without starting a repository-wide audit.",
       "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Audit this Laravel API repository for drift from its standards. There is no accepted audit tag yet, the README is the stock Laravel one, AGENTS.md is Laravel Boost output, and the feature tests share a MySQL test database with another worktree. Report findings only.",
+      "should_trigger": true,
+      "expected_output": "Read references/laravel.md after detecting artisan or laravel/framework. Treat the stock README and Boost-generated guidelines as non-project authority and look for .ai/rules, ADRs and reviewer conventions. Build the guard matrix with Pint, Larastan level and paths, Pest arch rules and the namespaces they target, phpunit.xml testsuites, composer scripts, CI triggers against the real default branch, the last deploy run and runtime PHP against CI PHP and the composer constraint. Run static checks and arch tests first; do not reset or migrate the shared database, and record the feature suite as a coverage limit or reuse a named CI run. State the missing baseline as provisional and recommend an audit/YYYY-MM-DD tag on acceptance without creating it.",
+      "files": []
     }
   ]
 }
