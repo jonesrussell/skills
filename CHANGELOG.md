@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.0 - 2026-11-09
+
+- Add a Laravel profile to the repository audit skill: where Laravel standards live, default guard-matrix rows, drift checks, temporary arch-test probes, verification order around shared test databases and an `audit/YYYY-MM-DD` baseline tag convention. The generic skill points to it when it finds `artisan` or `laravel/framework`.
+- Add a Laravel evaluation case and an installation test that the profile ships with the skill.
+
 ## 2.0.1 - 2026-10-24
 
 - Keep installer backups and receipts outside the directory agents scan for skills. Refuse installation when historical state needs relocation, preserving both current and backed-up copies.

@@ -35,6 +35,16 @@ class PackagedSkillTests(unittest.TestCase):
             self.assertEqual(checked.returncode, 0, checked.stderr)
             self.assertTrue((destination / "docs/backlog.md").is_file())
 
+    def test_installed_audit_carries_its_laravel_profile(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            installed = Path(temporary).resolve() / "agent-skills"
+            with redirect_stdout(io.StringIO()):
+                result = main(["install", "ai-repository-audit", "--dest", str(installed)])
+            self.assertEqual(result, 0)
+            skill = installed / "ai-repository-audit"
+            self.assertIn("](references/laravel.md)", (skill / "SKILL.md").read_text(encoding="utf-8"))
+            self.assertTrue((skill / "references/laravel.md").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()
