@@ -20,7 +20,7 @@ Start with [the tutorial guide](tutorials.md). **Maintained** means reviewed for
 
 Access to the scoped repository, Git history and its accepted baseline. Run only project checks already available and authorized.
 
-Retains the October 21 skill from 8e31ef1. Baseline, evidence and read-only boundaries reviewed. November 9 adds a Laravel profile drawn from a real audit of a Laravel API; its eval case is unexecuted. No new model benchmark or certification of a target repository is claimed.
+Retains the October 21 skill from 8e31ef1. Baseline, evidence and read-only boundaries reviewed. November 9 adds a Laravel profile; its eval case is unexecuted. No new model benchmark or certification of a target repository is claimed.
 
 [Behavior cases](../skills/ai-repository-audit/evals/evals.json) are inputs for evaluation, not recorded model results.
 
